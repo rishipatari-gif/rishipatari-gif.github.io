@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Rishi Patari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue:      #003262;
+      --blue-mid:  #0B4F8A;
+      --blue-dark: #001830;
+      --gold:      #FDB515;
+      --gold-lt:   #FFCC47;
+      --fg:        #09090B;
+      --muted:     #71717A;
+      --border:    #E4E4E7;
+      --bg:        #F4F4F5;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; margin: 0; }
+
+    .grain::before {
+      content: '';
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 2; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* Nav */
+    #nav { transition: background 320ms ease, box-shadow 320ms ease; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 4px 24px rgba(0,50,98,.07); }
+    .nav-logo, .nav-link { color: var(--blue); }
+    .nav-link { opacity: 0.65; transition: opacity 200ms ease; }
+    .nav-link:hover { opacity: 1; }
+    .nav-active { opacity: 1 !important; color: var(--blue) !important; font-weight: 600; }
+
+    /* Page hero */
+    .page-hero {
+      position: relative;
+      padding: 7rem 1.5rem 4rem;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(253,181,21,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 640ms cubic-bezier(0.16,1,0.3,1), transform 640ms cubic-bezier(0.16,1,0.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .rv1 { transition-delay: 80ms; }
+    .rv2 { transition-delay: 160ms; }
+    .rv3 { transition-delay: 240ms; }
+
+    /* Project card */
+    .proj-card {
+      background: white;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 350ms cubic-bezier(0.16,1,0.3,1), transform 350ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 70px rgba(0,50,98,.16), 0 8px 20px rgba(0,50,98,.08);
+    }
+
+    /* Media gallery */
+    .media-gallery { display: grid; gap: 8px; }
+    .media-gallery.two-col { grid-template-columns: 1fr 1fr; }
+    .media-thumb {
+      border-radius: 0.625rem;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/10;
+      cursor: pointer;
+      background: var(--bg);
+      transition: opacity 200ms ease;
+    }
+    .media-thumb:hover { opacity: 0.9; }
+    .media-thumb img, .media-thumb video {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .media-thumb .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.3);
+    }
+
+    /* Tag */
+    .tag { display: inline-flex; font-family: 'Inter',sans-serif; font-size:.68rem; font-weight:500; padding:.2rem .5rem; border-radius:9999px; background:rgba(0,50,98,.07); color:var(--blue); }
+
+    /* Link btn */
+    .link-btn {
+      display: inline-flex; align-items: center; gap: .375rem;
+      font-family: 'Inter',sans-serif; font-size: .8125rem; font-weight: 500;
+      padding: .5rem 1rem; border-radius: 9999px;
+      transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+      cursor: pointer;
+    }
+    .link-btn-primary { background: var(--blue); color: white; }
+    .link-btn-primary:hover { background: var(--blue-mid); box-shadow: 0 6px 20px rgba(0,50,98,.3); }
+    .link-btn-outline { border: 1px solid var(--border); color: var(--fg); }
+    .link-btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* Gold number badge */
+    .proj-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 5rem; font-weight: 700;
+      line-height: 1;
+      color: rgba(253,181,21,.12);
+      position: absolute; top: -1rem; right: 1rem;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Focus */
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 px-6 md:px-12 py-4">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="nav-logo font-serif text-xl font-semibold" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;">RP</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html"      class="nav-link font-sans text-sm font-medium">Home</a>
+<a href="projects.html"   class="nav-link nav-active font-sans text-sm font-medium">Projects</a>
+      <a href="contact.html"    class="nav-link font-sans text-sm font-medium">Contact</a>
+    </div>
+    <button id="mob-btn" class="md:hidden cursor-pointer p-2 -mr-2" style="color:var(--blue);" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile -->
+<div id="mob-menu" class="fixed inset-0 z-40 hidden" role="dialog" aria-modal="true">
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-10" style="background:rgba(0,24,48,.97);backdrop-filter:blur(12px)">
+    <button id="mob-close" class="absolute top-5 right-6 text-white cursor-pointer p-2" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <a href="index.html"    class="mob-link font-serif text-5xl italic text-white/75 hover:text-white transition-colors">Home</a>
+    <a href="projects.html" class="mob-link font-serif text-5xl italic text-white/75 hover:text-white transition-colors">Projects</a>
+    <a href="contact.html"  class="mob-link font-serif text-5xl italic text-white/75 hover:text-white transition-colors">Contact</a>
+  </div>
+</div>
+
+
+<!-- PAGE HERO -->
+<header class="page-hero grain" style="background:var(--blue-dark);">
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="h-px w-8" style="background:var(--gold);" aria-hidden="true"></div>
+      <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);opacity:.7;">Selected Work</span>
+    </div>
+    <h1 class="font-serif font-semibold text-white" style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,7vw,4.5rem);letter-spacing:-.03em;line-height:1.08;max-width:600px;">
+      Things I've<br><em style="color:var(--gold);">built</em>
+    </h1>
+    <p class="font-sans text-base mt-4 max-w-lg" style="color:rgba(255,255,255,.5);line-height:1.7;">
+      From Y Combinator startups to AI agents in 300+ classrooms — here are three projects that represent my best work.
+    </p>
+  </div>
+</header>
+
+
+<!-- PROJECTS -->
+<main class="py-16 md:py-20 px-6">
+  <div class="max-w-6xl mx-auto space-y-16">
+
+
+    <!-- ── PROJECT 1: SEAL APP ── -->
+    <article class="proj-card reveal">
+      <div class="grid lg:grid-cols-2 gap-0">
+
+        <!-- Acquisition panel -->
+        <div class="relative p-6 md:p-8 flex flex-col justify-center" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:360px;">
+
+          <!-- Grain overlay -->
+          <div style="position:absolute;inset:0;pointer-events:none;opacity:.04;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22300%22 height=%22300%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:180px 180px;" aria-hidden="true"></div>
+
+          <!-- Radial glow -->
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(253,181,21,.07) 0%, transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+
+          <div class="relative z-10 flex flex-col items-center text-center gap-6 py-8">
+
+            <!-- Shield / lock icon -->
+            <div style="width:64px;height:64px;border-radius:1rem;background:rgba(253,181,21,.12);border:1px solid rgba(253,181,21,.2);display:flex;align-items:center;justify-content:center;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color:var(--gold);">
+                <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Acquired badge -->
+            <div>
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full" style="background:rgba(253,181,21,.15);color:var(--gold);border:1px solid rgba(253,181,21,.25);">Algorithm Acquired</span>
+            </div>
+
+            <div>
+              <p class="font-serif text-white font-semibold mb-1" style="font-family:'EB Garamond',serif;font-size:1.35rem;letter-spacing:-.02em;">Acquired by FulcrumGT</p>
+              <p class="font-sans text-sm" style="color:rgba(255,255,255,.4);line-height:1.6;max-width:260px;">The proprietary matching algorithm was acquired. The consumer app was never publicly released.</p>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex items-center gap-6 pt-2" style="border-top:1px solid rgba(255,255,255,.08);width:100%;justify-content:center;">
+              <div class="text-center">
+                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">$1M+</p>
+                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Seed Funding</p>
+              </div>
+              <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
+              <div class="text-center">
+                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">2</p>
+                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Patents Filed</p>
+              </div>
+              <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
+              <div class="text-center">
+                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">1K+</p>
+                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Waitlist</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Info panel -->
+        <div class="p-6 md:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">FulcrumGT · 2023–2025</span>
+            </div>
+            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">Seal — Dating &amp; Matchmaking App</h2>
+            <p class="font-sans text-sm mb-5" style="color:var(--muted);line-height:1.75;">
+              Startup Project Manager for an online dating and matchmaking platform. Led product from concept to App Store approval — securing <strong style="color:var(--fg);">$1,000,000+</strong> in seed funding from the executive board, filing <strong style="color:var(--fg);">two patents</strong> on core algorithms, and generating <strong style="color:var(--fg);">1,000+ waitlist registrations</strong>. The matching algorithm was subsequently <strong style="color:var(--fg);">acquired by FulcrumGT</strong>; the consumer app was not released publicly.
+            </p>
+
+            <!-- Highlights -->
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                $1M+ seed funding secured from executive board
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                2 patents submitted for app algorithms
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                App Store approved · 1,000+ waitlist registrations
+              </li>
+            </ul>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap mb-6" style="gap:5px;">
+              <span class="tag">Product Design</span>
+              <span class="tag">iOS App</span>
+              <span class="tag">Wireframing</span>
+              <span class="tag">Fundraising</span>
+              <span class="tag">Patent Filing</span>
+              <span class="tag">Acquisition</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+
+    <!-- ── PROJECT 2: AI EDUCATION AGENT ── -->
+    <article class="proj-card reveal rv1">
+      <div class="grid lg:grid-cols-2 gap-0" style="direction:rtl;">
+        <div style="direction:ltr;">
+
+          <!-- Media panel -->
+          <div class="relative p-4 md:p-5 flex flex-col" style="background:rgba(253,181,21,.03);border-left:1px solid var(--border);">
+
+            <div class="media-thumb mb-2 flex-none" style="aspect-ratio:17/6;">
+              <img src="Ideation_image.png" alt="AI education agent screenshot" loading="lazy" style="object-fit:contain;object-position:top center;background:#fff;">
+            </div>
+
+            <div class="media-gallery flex-1 min-h-0" style="grid-template-columns:1fr 1fr;align-items:stretch;">
+              <div class="media-thumb" style="aspect-ratio:unset;height:100%;">
+                <img src="Classroom_image.png" alt="Classroom deployment photo" loading="lazy" style="object-fit:cover;object-position:center;">
+                <div style="position:absolute;inset:0;background:linear-gradient(to left,white 0%,transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+              </div>
+              <div class="media-thumb" style="aspect-ratio:unset;height:100%;">
+                <img src="Chat_image.png" alt="AI agent chat interface" loading="lazy" style="object-fit:cover;object-position:top;">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Info panel -->
+        <div style="direction:ltr;" class="p-6 md:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Simplify Tech · 2025</span>
+            </div>
+            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">AI Ideation Agent for Student Entrepreneurs</h2>
+            <p class="font-sans text-sm mb-5" style="color:var(--muted);line-height:1.75;">
+              Built an educator-approved AI agent deployed into <strong style="color:var(--fg);">300+ classrooms</strong> nationwide for <strong style="color:var(--fg);">10,000+ high school students</strong>. Engineered on Replit and n8n to guide student entrepreneurs through product ideation, market research, competitive analysis, and pricing.
+            </p>
+
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                300+ classrooms · 10,000+ students nationwide
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Educator approved via Uncharted Learning INCubatoredu
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Built on Replit + n8n agentic AI platform
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Guided students through full entrepreneurship workflow
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="tag">Agentic AI</span>
+              <span class="tag">n8n</span>
+              <span class="tag">Replit</span>
+              <span class="tag">Prompt Engineering</span>
+              <span class="tag">EdTech</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3 pt-5" style="border-top:1px solid var(--border);">
+            <a href="https://uncharted-learning-ideation-agent-w.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-primary" aria-label="View AI Agent project">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M5 1.5H2a1 1 0 00-1 1v8.5A1 1 0 002 12h8.5a1 1 0 001-1V8M7.5 1.5H12m0 0v4.5M12 1.5L5.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              View Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ── PROJECT 3: EOS AI ── -->
+    <article class="proj-card reveal rv2">
+      <div class="grid lg:grid-cols-2 gap-0">
+
+        <!-- Media panel -->
+        <div class="relative overflow-hidden" style="border-right:1px solid var(--border);min-height:320px;background:white;">
+          <img src="Eos_image.png" alt="Eos AI website screenshot" loading="lazy" style="position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);object-fit:cover;object-position:top;display:block;border-radius:0.5rem;">
+          <!-- Soft white blend on all edges -->
+          <div style="position:absolute;inset:0;background:linear-gradient(to right, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to left, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+        </div>
+
+        <!-- Info panel -->
+        <div class="p-6 md:p-8 flex flex-col justify-between">
+          <div class="flex flex-col flex-1">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Eos AI · YC W26 · 2025</span>
+            </div>
+            <h2 class="font-serif text-3xl font-semibold mb-5" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">Eos AI — Healthcare Imaging Startup</h2>
+            <p class="font-sans text-sm mb-8" style="color:var(--muted);line-height:1.85;">
+              Founding Business Lead (1st business hire) at a healthcare tech imaging startup backed by <strong style="color:var(--fg);">Y Combinator W26</strong>. Participated in <strong style="color:var(--fg);">TechCrunch Startup Battlefield</strong>, built the initial pipeline, acquired paying customers, and led growth, outreach, and website design.
+            </p>
+
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Y Combinator Winter 2026 Batch
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                TechCrunch Startup Battlefield participant
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Created initial pipeline &amp; acquired paying customers
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;">✦</span>
+                Developed GTM strategy, pricing, runway burn projections
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="tag">Healthcare AI</span>
+              <span class="tag">YC W26</span>
+              <span class="tag">GTM Strategy</span>
+              <span class="tag">B2B Sales</span>
+              <span class="tag">Growth</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3 pt-5" style="border-top:1px solid var(--border);">
+            <a href="https://www.helloeos.ai/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-primary" aria-label="Visit Eos AI website">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M5 1.5H2a1 1 0 00-1 1v8.5A1 1 0 002 12h8.5a1 1 0 001-1V8M7.5 1.5H12m0 0v4.5M12 1.5L5.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Visit Site
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+
+  </div>
+</main>
+
+
+<!-- CTA strip -->
+<section class="py-16 px-6 text-center grain relative overflow-hidden" style="background:var(--blue);">
+  <div class="absolute inset-0" style="background:radial-gradient(ellipse 60% 80% at 50% 110%, rgba(253,181,21,.15) 0%, transparent 65%);" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-xl mx-auto">
+    <h2 class="font-serif text-3xl font-semibold text-white mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;">Want to work together?</h2>
+    <p class="font-sans text-base mb-6" style="color:rgba(255,255,255,.55);line-height:1.7;">I'm always open to interesting problems and the right opportunities.</p>
+    <a href="contact.html" class="cursor-pointer inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-sans text-sm font-semibold"
+      style="background:var(--gold);color:var(--blue);transition:background 200ms ease,box-shadow 200ms ease;"
+      onmouseover="this.style.background='var(--gold-lt)';this.style.boxShadow='0 8px 32px rgba(253,181,21,.4)'"
+      onmouseout="this.style.background='var(--gold)';this.style.boxShadow='none'">
+      Get in Touch
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="py-8 px-6 text-center" style="background:var(--blue-dark);border-top:1px solid rgba(255,255,255,.05);">
+  <p class="font-sans text-xs mb-3" style="color:rgba(255,255,255,.25);">© 2025 Rishi Patari · UC Berkeley</p>
+  <div class="flex items-center justify-center gap-6">
+    <a href="index.html"    class="font-sans text-xs" style="color:rgba(255,255,255,.35);transition:color 200ms ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Home</a>
+    <a href="projects.html" class="font-sans text-xs" style="color:rgba(255,255,255,.35);transition:color 200ms ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Projects</a>
+    <a href="contact.html"  class="font-sans text-xs" style="color:rgba(255,255,255,.35);transition:color 200ms ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const mobBtn = document.getElementById('mob-btn');
+  const mobClose = document.getElementById('mob-close');
+  const mobMenu = document.getElementById('mob-menu');
+  mobBtn.addEventListener('click', () => { mobMenu.classList.remove('hidden'); document.body.style.overflow='hidden'; });
+  function closeMenu() { mobMenu.classList.add('hidden'); document.body.style.overflow=''; }
+  mobClose.addEventListener('click', closeMenu);
+  mobMenu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, { threshold: 0.06, rootMargin:'0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

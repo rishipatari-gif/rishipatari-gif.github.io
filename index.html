@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rishi Patari — UC Berkeley</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue:        #003262;
+      --blue-mid:    #0B4F8A;
+      --blue-dark:   #001830;
+      --blue-deep:   #03111f;
+      --blue-card:   #061830;
+      --gold:        #FDB515;
+      --gold-lt:     #FFCC47;
+      --fg:          #09090B;
+      --muted:       #71717A;
+      --border:      #E4E4E7;
+      --bg:          #FAFAFA;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--blue-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.375rem 2rem;
+      transition: background 300ms ease, box-shadow 300ms ease;
+    }
+    #nav.scrolled {
+      background: rgba(1, 10, 22, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(253,181,21,.1), 0 4px 24px rgba(0,0,0,.3);
+    }
+    .nav-inner { max-width: 72rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100dvh;
+      background: var(--blue-deep);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Grain overlay */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 3; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .hero-text { position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: center; padding: 8rem clamp(2rem, 5vw, 4.5rem) 5rem; max-width: min(82rem, 96vw); margin: 0 auto; width: 100%; }
+    .hero-video {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    .hero-video video {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      display: block;
+    }
+    .hero-video::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(to bottom, rgba(3,17,31,.55) 0%, rgba(3,17,31,.25) 45%, rgba(3,17,31,.75) 100%),
+        linear-gradient(105deg, rgba(3,17,31,.82) 0%, rgba(3,17,31,.55) 38%, rgba(3,17,31,.18) 100%);
+    }
+
+    /* Radial glows */
+    .glow-tl { position: absolute; top: -15%; left: -10%; width: 55%; height: 55%; background: radial-gradient(circle, rgba(0,50,98,.45) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+    .glow-br { position: absolute; bottom: -10%; right: 15%; width: 35%; height: 35%; background: radial-gradient(circle, rgba(253,181,21,.07) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollBar { 0%,100%{opacity:.25} 50%{opacity:.7} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .fade-up { animation: fadeUp 700ms cubic-bezier(0.16,1,0.3,1) both; }
+    .d1 { animation-delay: 120ms; }
+    .d2 { animation-delay: 280ms; }
+    .d3 { animation-delay: 440ms; }
+    .d4 { animation-delay: 590ms; }
+    .d5 { animation-delay: 720ms; }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 620ms cubic-bezier(0.16,1,0.3,1), transform 620ms cubic-bezier(0.16,1,0.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .rv1 { transition-delay: 90ms; }
+    .rv2 { transition-delay: 180ms; }
+    .rv3 { transition-delay: 270ms; }
+
+    /* ── Step mockup cards ── */
+    .mockup-card {
+      background: linear-gradient(145deg, #061830 0%, #0a2244 100%);
+      border: 1px solid rgba(253,181,21,.12);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 0 0 1px rgba(253,181,21,.05) inset;
+      padding: 1.75rem;
+    }
+
+    /* ── Exp row ── */
+    .exp-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-row {
+      display: grid;
+      grid-template-columns: 2.75rem 1fr auto auto 1.5rem;
+      gap: 1.25rem;
+      align-items: center;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      user-select: none;
+      border-radius: .5rem;
+      transition: background 200ms ease;
+      width: 100%;
+    }
+    .exp-row:hover { background: rgba(255,255,255,.04); }
+    .exp-chevron {
+      width: 1.25rem; height: 1.25rem;
+      color: rgba(255,255,255,.25);
+      transition: transform 280ms cubic-bezier(0.16,1,0.3,1), color 200ms ease;
+      flex-shrink: 0;
+      justify-self: end;
+    }
+    .exp-row.open .exp-chevron { transform: rotate(180deg); color: var(--gold); }
+    .exp-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 420ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .exp-dropdown.open { max-height: 600px; }
+    .exp-bullets-list {
+      list-style: none;
+      padding: .25rem 0 1.125rem 4rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .exp-bullets-list li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.6);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .exp-bullets-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: .6em;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: .6;
+    }
+
+    /* ── Skill pill ── */
+    .skill-pill { transition: background 200ms ease, color 200ms ease, transform 200ms cubic-bezier(0.16,1,0.3,1); cursor: default; }
+    .skill-pill:hover { background: var(--blue) !important; color: white !important; transform: translateY(-2px); }
+
+    /* ── Avatar ── */
+    @keyframes av-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @keyframes av-blink {
+      0%, 90%, 100% { transform: scaleY(0); }
+      92%, 97% { transform: scaleY(1); }
+    }
+    .av-svg { display: block; filter: drop-shadow(0 24px 56px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(253,181,21,.08)); }
+    .av-float { animation: av-float 4.5s cubic-bezier(0.37,0,0.63,1) infinite; }
+    .av-blink-l, .av-blink-r { transform-box: fill-box; transform-origin: center; transform: scaleY(0); animation: av-blink 6s ease-in-out infinite; }
+    .av-blink-r { animation-delay: 0.06s; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero-video::after { background: linear-gradient(to bottom, rgba(3,17,31,.72) 0%, rgba(3,17,31,.42) 45%, rgba(3,17,31,.82) 100%); }
+      .hero-text { margin: 0; padding: 7rem 1.5rem 4rem; max-width: 100%; width: 100%; }
+      .steps-grid { grid-template-columns: 1fr !important; }
+      .steps-grid .mockup-swap { order: -1 !important; }
+      .beyond-grid { grid-template-columns: 1fr !important; }
+      .beyond-avatar { order: -1; }
+      .exp-row { grid-template-columns: 2.75rem 1fr 1.5rem; }
+      .exp-row .exp-tag, .exp-row .exp-date { display: none; }
+      .exp-bullets-list { padding-left: 1.5rem; }
+      .stats-grid { grid-template-columns: 1fr !important; }
+      .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .reveal { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── #about light / inverted ── */
+    #about .exp-item { border-bottom-color: rgba(0,50,98,.1); }
+    #about .skill-pill { background: rgba(0,50,98,.06) !important; color: var(--blue) !important; border-color: rgba(0,50,98,.14) !important; }
+    #about .skill-pill:hover { background: var(--blue) !important; color: white !important; }
+
+    /* ── Exp card (blue floating box) ── */
+    .exp-card {
+      background: var(--blue);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      padding: 0.25rem 1.75rem;
+      box-shadow:
+        0 0 0 1px rgba(253,181,21,.12),
+        0 8px 32px rgba(0,50,98,.28),
+        0 28px 80px rgba(0,50,98,.22);
+    }
+    .exp-card .exp-item { border-bottom-color: rgba(255,255,255,.1); }
+    .exp-card .exp-item:last-child { border-bottom: none; }
+    .exp-card .exp-row:hover { background: rgba(255,255,255,.05); }
+    .exp-card .exp-row > div:first-child {
+      background: rgba(255,255,255,.1) !important;
+      border-color: rgba(255,255,255,.16) !important;
+    }
+    .exp-card .exp-row > div:first-child > span { color: rgba(255,255,255,.85) !important; }
+    .exp-card .exp-row > div:nth-child(2) > div:first-child { color: rgba(255,255,255,.92) !important; }
+    .exp-card .exp-row > div:nth-child(2) > div:nth-child(2) { color: rgba(255,255,255,.55) !important; }
+    .exp-card .exp-row .exp-date { color: #ffffff !important; }
+    .exp-card .exp-tag-muted {
+      background: rgba(255,255,255,.1) !important;
+      color: rgba(255,255,255,.65) !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:600;color:white;text-decoration:none;letter-spacing:-.025em;">RP</a>
+
+    <div class="nav-links" style="display:flex;align-items:center;gap:2.25rem;">
+      <a href="projects.html" style="font-size:.875rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;transition:color 200ms;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Projects</a>
+      <a href="contact.html"  style="font-size:.875rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;transition:color 200ms;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.55)'">Contact</a>
+    </div>
+
+    <a href="contact.html"
+       style="font-size:.875rem;font-weight:600;color:var(--blue-deep);background:var(--gold);padding:.5rem 1.375rem;border-radius:9999px;text-decoration:none;transition:background 200ms,box-shadow 200ms;"
+       onmouseover="this.style.background='var(--gold-lt)';this.style.boxShadow='0 4px 20px rgba(253,181,21,.35)'"
+       onmouseout="this.style.background='var(--gold)';this.style.boxShadow='none'">Get in touch</a>
+  </div>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <!-- Background video -->
+  <div class="hero-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="https://videos.pexels.com/video-files/25561698/11902700_1920_1080_60fps.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="glow-tl" aria-hidden="true"></div>
+  <div class="glow-br" aria-hidden="true"></div>
+
+  <!-- Text -->
+  <div class="hero-text">
+
+    <!-- Badge -->
+    <div class="fade-up d1" style="display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(253,181,21,.28);background:rgba(253,181,21,.07);padding:.375rem 1rem;border-radius:9999px;margin-bottom:2rem;align-self:flex-start;">
+      <span style="width:.375rem;height:.375rem;border-radius:50%;background:var(--gold);display:inline-block;"></span>
+      <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);">UC Berkeley · Class of '29</span>
+    </div>
+
+    <!-- Name -->
+    <h1 class="fade-up d2" style="font-family:'EB Garamond',serif;font-size:clamp(3.75rem,9.5vw,10rem);font-weight:800;letter-spacing:-.05em;line-height:.9;color:white;margin-bottom:1.75rem;white-space:nowrap;">
+      Rishi Patari
+    </h1>
+
+    <!-- Tagline -->
+    <p class="fade-up d3" style="font-size:1.0625rem;font-weight:400;line-height:1.7;color:rgba(255,255,255,.5);max-width:22rem;margin-bottom:2.5rem;">
+      Builder at the intersection of<br>
+      <span style="color:rgba(255,255,255,.82);font-weight:500;">business, data &amp; AI</span>
+    </p>
+
+    <!-- Mini stats -->
+    <div class="fade-up d4" style="display:flex;gap:3rem;padding-bottom:2.25rem;margin-bottom:2.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
+      <div>
+        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">$1M+</div>
+        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Seed Raised</div>
+      </div>
+      <div>
+        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">10K+</div>
+        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Students Reached</div>
+      </div>
+      <div>
+        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">YC W26</div>
+        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Y Combinator · 1st Biz Hire</div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="fade-up d5" style="display:flex;gap:.875rem;flex-wrap:wrap;">
+      <a href="projects.html"
+         style="display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;color:var(--blue-deep);background:var(--gold);padding:.75rem 1.75rem;border-radius:9999px;text-decoration:none;cursor:pointer;transition:background 200ms,box-shadow 200ms;"
+         onmouseover="this.style.background='var(--gold-lt)';this.style.boxShadow='0 8px 32px rgba(253,181,21,.38)'"
+         onmouseout="this.style.background='var(--gold)';this.style.boxShadow='none'">
+        View Projects
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll line -->
+  <div style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:.5rem;" aria-hidden="true">
+    <div style="width:1px;height:3rem;background:linear-gradient(to bottom,transparent,rgba(253,181,21,.45));animation:scrollBar 2.2s ease-in-out infinite;"></div>
+  </div>
+</section>
+
+
+<!-- ═══ BEYOND THE BUILD ═══ -->
+<section id="beyond" style="background:linear-gradient(175deg,var(--blue-deep) 0%,#020c18 100%);padding:7rem 2rem;">
+  <div class="beyond-grid" style="max-width:72rem;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+
+    <!-- LEFT: interests text -->
+    <div class="reveal">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.375rem;">
+        <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
+        <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);opacity:.7;">The Person</span>
+      </div>
+
+      <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:white;margin-bottom:1.5rem;">
+        Competitive by nature
+      </h2>
+
+      <p style="font-size:1rem;line-height:1.85;color:rgba(255,255,255,.52);margin-bottom:2rem;max-width:30rem;">
+        3rd Degree Black Belt in Taekwondo, Regional Sparring Gold twice, and three Midwest Conference tennis titles. I also lift, boulder, run, and play poker. The Chicago Bears test my optimism every fall yet I keep coming back.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:.625rem;">
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(253,181,21,.28);color:rgba(253,181,21,.75);">Taekwondo · 3rd Dan</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Varsity Tennis</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Bouldering</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Weightlifting</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Running</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Poker</span>
+        <span style="font-size:.73rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);">Chicago Bears</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: headshot photo -->
+    <div class="reveal rv1 beyond-avatar" style="display:flex;justify-content:center;align-items:center;">
+      <div style="position:relative;width:100%;max-width:300px;margin:0 auto;">
+        <!-- Ambient glow behind photo -->
+        <div aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(253,181,21,.12) 0%,transparent 70%);pointer-events:none;"></div>
+
+        <div class="av-float" style="position:relative;z-index:1;">
+          <div style="width:280px;height:280px;border-radius:50%;margin:0 auto;overflow:hidden;border:2px solid rgba(253,181,21,.3);box-shadow:0 0 0 6px rgba(253,181,21,.06),0 24px 64px rgba(0,0,0,.55),0 0 40px rgba(253,181,21,.08);">
+            <img src="Rishi_Patari_Headshot.jpg" alt="Rishi Patari" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          </div>
+        </div>
+
+        <!-- Shadow ellipse -->
+        <div aria-hidden="true" style="width:200px;height:18px;border-radius:50%;background:rgba(0,0,0,0.35);margin:1rem auto 0;filter:blur(8px);"></div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ═══ DARK: EXPERIENCE + ABOUT ═══ -->
+<section id="about" style="background:#FFFFFF;padding:7rem 2rem;">
+  <div style="max-width:72rem;margin:0 auto;">
+
+    <!-- Header row -->
+    <div class="reveal" style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:3.5rem;margin-bottom:3rem;border-bottom:1px solid rgba(0,50,98,.1);">
+      <div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.125rem;">
+          <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
+          <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);opacity:.65;">Background</span>
+        </div>
+        <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--fg);white-space:nowrap;">5+ roles and counting</h2>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="reveal rv1" style="margin-bottom:3rem;">
+      <div style="background:var(--blue);border-radius:1.5rem;padding:1.5rem 1.75rem;box-shadow:0 0 0 1px rgba(253,181,21,.12),0 8px 32px rgba(0,50,98,.28);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);margin-bottom:.3rem;">University of California, Berkeley</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.55);line-height:1.65;">
+              B.S. Business Administration — <span style="color:rgba(255,255,255,.75);font-weight:500;">Haas School of Business</span><br>
+              B.S. Data Science<br>
+              <span style="color:var(--gold);font-weight:500;">GPA: 3.9</span>
+            </div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.7);">Expected May 2029</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem;">Berkeley, CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience list -->
+    <div class="reveal rv2" style="margin-bottom:3.5rem;">
+      <div class="exp-card">
+
+      <!-- AnthrAI -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">AI</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">AnthrAI</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Growth &amp; Go-to-Market Intern</div>
+          </div>
+          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(34,197,94,.15);color:#22c55e;display:flex;align-items:center;gap:.35rem;">
+            <span style="width:.35rem;height:.35rem;border-radius:50%;background:#22c55e;animation:pulse 2s ease-in-out infinite;display:inline-block;"></span>
+            Active
+          </span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">May 2026 –</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="AnthrAI details">
+          <ul class="exp-bullets-list">
+            <li>Coordinated with executives on go-to-market strategy, customer validation, and pricing model analysis for AI test agents</li>
+            <li>Partnered with developers to align feature milestones with business adoption and monetization goals across initial pilots</li>
+            <li>Analyzed customer interviews and pilot feedback to guide product feature updates and future operational developments</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IKONA Partners -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">IK</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">IKONA Partners</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Investment Banking Analyst Intern</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">M&amp;A / PE</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jan–May '26</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="IKONA Partners details">
+          <ul class="exp-bullets-list">
+            <li>Sourced high-growth enterprise software startups with high M&amp;A probability and strong strategic acquisition potential</li>
+            <li>Built and maintained a qualified deal pipeline with a response and conversion rate above 25% through founder outreach</li>
+            <li>Conducted initial business driver analysis, projected growth metrics, and performed profit and loss statement evaluation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Eos AI -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">EOS</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">
+              Eos AI
+              <span style="font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:rgba(253,181,21,.15);color:var(--gold);margin-left:.375rem;">YC W26</span>
+            </div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Founding Business Lead · Healthcare AI</div>
+          </div>
+          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(253,181,21,.12);color:rgba(253,181,21,.9);">TechCrunch</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Sep–Dec '25</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="Eos AI details">
+          <ul class="exp-bullets-list">
+            <li>1st business hire at Eos AI, a healthcare imaging startup — led growth, outreach, and visual design initiatives</li>
+            <li>Participated in TechCrunch Startup Battlefield &amp; Y Combinator Winter 26 Batch; built pipeline &amp; acquired paying customers</li>
+            <li>Developed business model, go-to-market strategy, pricing, runway burn projections, and led website design</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FulcrumGT -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">FG</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">FulcrumGT – Fulcrum Labs</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Startup Project Manager · Seal App</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">Product / PM</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">2023–2025</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="FulcrumGT details">
+          <ul class="exp-bullets-list">
+            <li>Secured $1,000,000+ in seed funding from FulcrumGT executive board and submitted two patents for app algorithms</li>
+            <li>Developed prototypes, wireframes, and UI designs for Seal, an online dating and matchmaking app</li>
+            <li>Received App Store approval and generated 1,000+ early sign-up and waitlist registrations ahead of launch</li>
+          </ul>
+        </div>
+      </div>
+
+      </div><!-- /exp-card -->
+    </div>
+
+    <!-- Skills -->
+    <div class="reveal rv3" style="padding-top:3rem;border-top:1px solid rgba(0,50,98,.1);">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Skills & Tools</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Agentic AI Design</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Financial Modeling</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Go-to-Market Strategy</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Pitchbook & Capital IQ</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Product Design</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">n8n & Replit</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Data Science</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Mandarin (Basic)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ STATS CALLOUT ═══ -->
+<section style="background:#061422;padding:5.5rem 2rem;">
+  <div style="max-width:72rem;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <h2 style="font-family:'EB Garamond',serif;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;letter-spacing:-.025em;line-height:1.08;color:white;">Everything starts with being <span style="color:var(--gold);">first in the room</span></h2>
+    </div>
+    <div class="reveal rv1 stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.06);border-radius:1.5rem;overflow:hidden;background:rgba(255,255,255,.015);">
+      <div style="text-align:center;padding:2.5rem 1.5rem;border-right:1px solid rgba(255,255,255,.06);">
+        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">$1M+</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">Seed Raised</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Across portfolio companies</div>
+      </div>
+      <div style="text-align:center;padding:2.5rem 1.5rem;border-right:1px solid rgba(255,255,255,.06);">
+        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">10K+</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">Students Reached</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Via AI agents deployed</div>
+      </div>
+      <div style="text-align:center;padding:2.5rem 1.5rem;">
+        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">3.9</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">GPA at Berkeley</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Haas + Data Science</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer style="background:var(--blue-deep);border-top:1px solid rgba(255,255,255,.05);padding:3rem 2rem;">
+  <div style="max-width:72rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+    <a href="index.html" style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:600;color:white;text-decoration:none;letter-spacing:-.025em;">RP</a>
+    <div style="display:flex;align-items:center;gap:2rem;">
+      <a href="index.html"      style="font-size:.8125rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color 200ms;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.28)'">Home</a>
+      <a href="projects.html"   style="font-size:.8125rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color 200ms;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.28)'">Projects</a>
+      <a href="contact.html"    style="font-size:.8125rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color 200ms;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.28)'">Contact</a>
+    </div>
+    <p style="font-size:.8125rem;color:rgba(255,255,255,.18);">© 2026 Rishi Patari · UC Berkeley</p>
+  </div>
+</footer>
+
+
+<script>
+  // Experience accordion
+  function toggleExp(row) {
+    const isOpen = row.classList.contains('open');
+    row.classList.toggle('open', !isOpen);
+    row.setAttribute('aria-expanded', String(!isOpen));
+    const dropdown = row.nextElementSibling;
+    if (dropdown) dropdown.classList.toggle('open', !isOpen);
+  }
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+</script>
+
+</body>
+</html>
