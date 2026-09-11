@@ -76,11 +76,16 @@
       position: absolute; inset: 0;
       overflow: hidden;
     }
-    .hero-video video {
+    .hv {
+      position: absolute; inset: 0; z-index: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 40%;
       display: block;
+      opacity: 0;
+      transition: opacity 1100ms ease;
     }
+    .hv.show { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .hv { transition: none; } }
     .hero-video::after {
       content: '';
       position: absolute; inset: 0; z-index: 1;
@@ -288,9 +293,8 @@
 <section id="hero">
   <!-- Background video -->
   <div class="hero-video" aria-hidden="true">
-    <video id="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="https://videos.pexels.com/video-files/14623514/14623514-hd_1920_1080_30fps.mp4" type="video/mp4">
-    </video>
+    <video class="hv" muted playsinline preload="auto"></video>
+    <video class="hv" muted playsinline preload="auto"></video>
   </div>
 
   <div class="glow-tl" aria-hidden="true"></div>
@@ -649,8 +653,6 @@
         <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">R</span>
         <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Tableau</span>
         <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Go-to-Market Strategy</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Agentic AI Design</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Figma</span>
         <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Mandarin (Intermediate)</span>
       </div>
     </div>
@@ -675,7 +677,7 @@
       </h2>
 
       <p style="font-size:1rem;line-height:1.85;color:rgba(255,255,255,.52);margin-bottom:2rem;max-width:30rem;">
-        3rd Degree Black Belt in Taekwondo, Regional Sparring Gold twice, and three Midwest Conference tennis titles. I also lift, boulder, run, and play poker. The Chicago Bears test my optimism every fall yet I keep coming back.
+        3rd Degree Black Belt in Taekwondo, Regional Sparring Gold twice, and three Midwest Conference tennis titles. I also lift, boulder, run, and play poker. The Chicago Bears test my optimism every fall, though this year there is genuinely a lot to hope for.
       </p>
 
       <div style="display:flex;flex-wrap:wrap;gap:.625rem;">
@@ -697,7 +699,7 @@
 
         <div class="av-float" style="position:relative;z-index:1;">
           <div style="width:280px;height:280px;border-radius:50%;margin:0 auto;overflow:hidden;border:2px solid rgba(253,181,21,.3);box-shadow:0 0 0 6px rgba(253,181,21,.06),0 24px 64px rgba(0,0,0,.55),0 0 40px rgba(253,181,21,.08);">
-            <img src="Rishi_Patari_Headshot.jpg" alt="Rishi Patari" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            <img src="Rishi_Patari_Headshot.jpg" alt="Rishi Patari" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           </div>
         </div>
 
@@ -758,15 +760,62 @@
 
 
 <script>
-  // Hero video — drone-at-speed playback, held back for reduced-motion users
+  // Hero video — rotates through four Bay Area drone clips, crossfading
+  // between them. Plays at speed, but drops to 1x under reduced-motion.
   (function () {
-    const v = document.getElementById('hero-video');
-    if (!v) return;
+    const wrap = document.querySelector('.hero-video');
+    if (!wrap) return;
+    const CLIPS = [
+      'https://videos.pexels.com/video-files/14623514/14623514-hd_1920_1080_30fps.mp4',
+      'https://videos.pexels.com/video-files/14623491/14623491-hd_1920_1080_30fps.mp4',
+      'https://videos.pexels.com/video-files/13175361/13175361-hd_1280_720_30fps.mp4',
+      'https://videos.pexels.com/video-files/14623517/14623517-hd_1920_1080_30fps.mp4'
+    ];
+    const layers = Array.from(wrap.querySelectorAll('.hv'));
+    if (layers.length < 2) return;
+
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const apply = () => { v.playbackRate = calm.matches ? 1 : 2.6; };
-    v.addEventListener('loadedmetadata', apply);
-    calm.addEventListener('change', apply);
-    apply();
+    const rate = () => (calm.matches ? 1 : 2.6);
+    const OVERLAP = 1.1;               // seconds of real-time crossfade
+    let clip = 0, active = 0, switching = false;
+
+    const assign = (layer, n) => { layer.src = CLIPS[n]; layer.load(); };
+
+    function arm(layer) {
+      layer.playbackRate = rate();
+      layer.ontimeupdate = () => {
+        if (switching || !layer.duration) return;
+        if (layer.currentTime >= layer.duration - OVERLAP * rate()) advance();
+      };
+    }
+
+    function advance() {
+      switching = true;
+      const other = 1 - active;
+      const inbound = layers[other];
+      const outgoing = layers[active];
+      arm(inbound);
+      try { inbound.currentTime = 0; } catch (e) {}
+      inbound.play().catch(() => {});
+      inbound.classList.add('show');
+      outgoing.classList.remove('show');
+      outgoing.ontimeupdate = null;
+      active = other;
+      clip = (clip + 1) % CLIPS.length;
+      // wait out the fade before reusing the retired layer
+      setTimeout(() => {
+        outgoing.pause();
+        assign(outgoing, (clip + 1) % CLIPS.length);
+        switching = false;
+      }, 1300);
+    }
+
+    assign(layers[0], 0);
+    layers[0].addEventListener('loadedmetadata', () => arm(layers[0]), { once: true });
+    layers[0].classList.add('show');
+    layers[0].play().catch(() => {});
+    assign(layers[1], 1);
+    calm.addEventListener('change', () => layers.forEach(l => { l.playbackRate = rate(); }));
   })();
 
   // Experience accordion
