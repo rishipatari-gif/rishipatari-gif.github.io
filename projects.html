@@ -74,25 +74,6 @@
       box-shadow: 0 28px 70px rgba(0,50,98,.16), 0 8px 20px rgba(0,50,98,.08);
     }
 
-    /* Case study */
-    .case { border-top: 1px solid var(--border); padding-top: 2.5rem; }
-    .case:first-child { border-top: none; padding-top: 0; }
-    .case-meta {
-      font-size: .7rem; font-weight: 600; letter-spacing: .09em;
-      text-transform: uppercase; color: var(--gold);
-    }
-    .case-title {
-      font-family: 'EB Garamond', serif; font-weight: 700;
-      font-size: clamp(1.85rem, 3.4vw, 2.5rem); line-height: 1.1;
-      letter-spacing: -.025em; color: var(--fg); margin: .6rem 0 .4rem;
-    }
-    .case-role { font-size: .9rem; color: var(--muted); margin-bottom: 1.6rem; }
-    .case-body p {
-      font-size: 1.0625rem; line-height: 1.85; color: var(--muted);
-      margin-bottom: 1.15rem;
-    }
-    .case-body p:last-child { margin-bottom: 0; }
-
     .media-gallery { display: grid; gap: 8px; }
     .media-gallery.two-col { grid-template-columns: 1fr 1fr; }
     .media-thumb {
@@ -197,7 +178,7 @@
       Things I've<br><em style="color:var(--gold);">worked on</em>
     </h1>
     <p class="font-sans text-base mt-4 max-w-lg" style="color:rgba(255,255,255,.5);line-height:1.7;">
-      Three roles, and what the work actually involved.
+      Three roles, and what I did in each.
     </p>
   </div>
 </header>
@@ -205,44 +186,150 @@
 
 <!-- PROJECTS -->
 <main class="py-16 md:py-20 px-6">
-  <div class="max-w-3xl mx-auto space-y-16">
+  <div class="max-w-6xl mx-auto space-y-12">
 
-    <article class="case reveal">
-      <div class="case-head">
-        <span class="case-meta">RISE &middot; Feb&ndash;Apr 2026</span>
-        <h2 class="case-title">Getting eight bankers to show up</h2>
-        <p class="case-role">Lead Outreach Coordinator</p>
-      </div>
-      <div class="case-body">
-          <p>A student-run panel only works if the panelists are people students actually want to hear from. Nobody at Goldman or Evercore owes a sophomore a favor, so the whole thing came down to how much outreach I was willing to do and which names I spent it on.</p>
-          <p>I treated it as a pipeline rather than a guest list. I worked through roughly 1,300 people, weighted toward alumni and analysts two or three years out, on the theory that a reachable associate is worth more than an unreachable managing director. Eight said yes.</p>
-          <p>The part I underestimated was everything after the yes. Confirming logistics, keeping people warm for six weeks, and making the night worth their evening took more work than getting the first reply did. The satisfaction scores came out of that, not out of the booking.</p>
+    <article class="proj-card reveal">
+      <div class="grid lg:grid-cols-5 gap-0">
+
+        <!-- Identity panel -->
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10">
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Feb&ndash;Apr 2026</p>
+            <h2 class="font-serif font-semibold mt-2" style="font-family:'EB Garamond',serif;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.1;letter-spacing:-.025em;color:white;">RISE Investment Banking Panel</h2>
+            <p class="font-sans text-sm mt-2" style="color:rgba(255,255,255,.55);">Lead Outreach Coordinator</p>
+          </div>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="lg:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+          <ul class="space-y-2 mb-5">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Ran panelist outreach from the first cold email through to event night</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Secured panelists from Goldman Sachs, Centerview, Morgan Stanley and Evercore</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Prioritized alumni and recent analysts over senior bankers for reply rate</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Organized resume workshops and event marketing across the Bay Area</span>
+              </li>
+          </ul>
+          <div class="flex flex-wrap" style="gap:5px;">
+              <span class="tag">Outreach</span>
+              <span class="tag">Event Operations</span>
+              <span class="tag">Investment Banking</span>
+              <span class="tag">Recruiting</span>
+          </div>
+        </div>
+
       </div>
     </article>
 
-    <article class="case reveal rv1">
-      <div class="case-head">
-        <span class="case-meta">IKONA Partners &middot; Jan&ndash;May 2026</span>
-        <h2 class="case-title">Learning to kill names quickly</h2>
-        <p class="case-role">Investment Banking Spring Analyst</p>
-      </div>
-      <div class="case-body">
-          <p>The job was finding enterprise software companies worth acquiring. The hard part is not finding companies. It is throwing most of them out fast enough that you still have time to look properly at the few that survive.</p>
-          <p>I screened on what showed up in the numbers rather than on how a company presented itself: growth you could see, a P&amp;L that made sense, a business driver I could state in one sentence. Anything that needed a story to look good got cut. Running that screen across a thousand names is mostly an exercise in not getting attached.</p>
-          <p>Sourcing turned out to be a discipline problem more than a research problem. It is easy to keep a name alive because it is interesting to read about. The pipeline only works if you are willing to say no to companies you like.</p>
+    <article class="proj-card reveal rv1">
+      <div class="grid lg:grid-cols-5 gap-0">
+
+        <!-- Identity panel -->
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10">
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Jan&ndash;May 2026</p>
+            <h2 class="font-serif font-semibold mt-2" style="font-family:'EB Garamond',serif;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.1;letter-spacing:-.025em;color:white;">IKONA Partners</h2>
+            <p class="font-sans text-sm mt-2" style="color:rgba(255,255,255,.55);">Investment Banking Spring Analyst</p>
+          </div>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="lg:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+          <ul class="space-y-2 mb-5">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Sourced enterprise software companies with M&amp;A and acquisition potential</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Screened on growth, P&amp;L quality and a business driver I could name</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Ran business driver analysis and profit and loss statement evaluation</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Built the deal pipeline and target CRM from scratch</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Logged founder conversations through to partner-level meetings</span>
+              </li>
+          </ul>
+          <div class="flex flex-wrap" style="gap:5px;">
+              <span class="tag">Deal Sourcing</span>
+              <span class="tag">M&amp;A</span>
+              <span class="tag">Diligence</span>
+              <span class="tag">P&amp;L Analysis</span>
+              <span class="tag">Valuation</span>
+          </div>
+        </div>
+
       </div>
     </article>
 
-    <article class="case reveal rv2">
-      <div class="case-head">
-        <span class="case-meta">Eos AI (YC W26) &middot; Sep&ndash;Dec 2025</span>
-        <h2 class="case-title">The forecast a company raised on</h2>
-        <p class="case-role">Founding Strategy &amp; Operations Lead</p>
-      </div>
-      <div class="case-body">
-          <p>I was the first business hire at a healthcare imaging startup, which in practice meant I owned the model. The deck we took into seed conversations sat on an operating model and a burn forecast I put together.</p>
-          <p>The useful part was watching which assumptions got challenged. Investors did not argue about the revenue line. They argued about the inputs underneath it: how long a pilot takes to convert, what a radiology group will actually pay, how many we could reach in a quarter. A forecast is a stack of those, and every one is a claim you have to defend.</p>
-          <p>It is also where I learned how quickly a model drifts. The numbers we wrote in September described a company that no longer existed by December. That distance between the forecast and the business is the part I find genuinely interesting, and it is most of why I want to end up on the investing side.</p>
+    <article class="proj-card reveal rv2">
+      <div class="grid lg:grid-cols-5 gap-0">
+
+        <!-- Identity panel -->
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10">
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Sep&ndash;Dec 2025 &middot; YC W26</p>
+            <h2 class="font-serif font-semibold mt-2" style="font-family:'EB Garamond',serif;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.1;letter-spacing:-.025em;color:white;">Eos AI</h2>
+            <p class="font-sans text-sm mt-2" style="color:rgba(255,255,255,.55);">Founding Strategy &amp; Operations Lead</p>
+          </div>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="lg:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+          <ul class="space-y-2 mb-5">
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>First business hire, owning growth, finance and design</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Built the operating model, burn forecasts and financial projections</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Prepared the investor deck behind the seed raise</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Pitched at TechCrunch Startup Battlefield and Y Combinator W26</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Led outbound to radiology and pathology groups</span>
+              </li>
+              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Converted pilot users into the first paying accounts</span>
+              </li>
+          </ul>
+          <div class="flex flex-wrap" style="gap:5px;">
+              <span class="tag">Financial Modeling</span>
+              <span class="tag">Fundraising</span>
+              <span class="tag">Go-to-Market</span>
+              <span class="tag">Healthcare AI</span>
+          </div>
+        </div>
+
       </div>
     </article>
 
