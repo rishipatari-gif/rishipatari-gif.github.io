@@ -288,8 +288,8 @@
 <section id="hero">
   <!-- Background video -->
   <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="https://videos.pexels.com/video-files/25561698/11902700_1920_1080_60fps.mp4" type="video/mp4">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://videos.pexels.com/video-files/14623514/14623514-hd_1920_1080_30fps.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -310,11 +310,6 @@
       Rishi Patari
     </h1>
 
-    <!-- Tagline -->
-    <p class="fade-up d3" style="font-size:1.0625rem;font-weight:400;line-height:1.7;color:rgba(255,255,255,.62);max-width:31rem;margin-bottom:2.5rem;">
-      I work on deals and the models underneath them —<br>
-      <span style="color:rgba(255,255,255,.88);font-weight:500;">M&amp;A sourcing, operating forecasts, early-stage finance</span>
-    </p>
 
     <!-- Mini stats -->
     <div class="fade-up d4 hero-stats" style="display:flex;gap:3rem;padding-bottom:2.25rem;margin-bottom:2.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
@@ -374,15 +369,18 @@
       </h2>
 
       <p style="font-size:1.0625rem;line-height:1.85;color:rgba(255,255,255,.66);margin-bottom:1.25rem;">
-        I came to finance from the operating side. At <span style="color:rgba(255,255,255,.9);font-weight:500;">Eos AI</span> I built the operating model, burn forecasts, and projections behind the deck we took into ten-plus seed conversations — which is where I learned what a number has to survive before an investor believes it.
+        Banking first, because I want the reps. Being handed a company you have never heard of and having to form a view on it by Monday is the fastest way I know to stop guessing. I also want to be wrong in front of people who will say so.
+      </p>
+      <p style="font-size:1.0625rem;line-height:1.85;color:rgba(255,255,255,.66);margin-bottom:1.25rem;">
+        I don't want to stay on the sell side, though. A bank gets paid when the deal closes. Whether the thesis was any good is somebody else's problem by then, and that is the part that bothers me.
       </p>
       <p style="font-size:1.0625rem;line-height:1.85;color:rgba(255,255,255,.66);">
-        At <span style="color:rgba(255,255,255,.9);font-weight:500;">IKONA Partners</span> I sat on the other side of that table, sourcing enterprise software targets and working through P&amp;Ls to judge which businesses were actually worth acquiring. Private equity is where those two habits meet: you have to understand an operating business well enough to underwrite it. That is the work I want to get good at.
+        Private equity closes that loop. You own the business, you sit with it for years, and eventually the returns tell you whether you understood what you bought. <span style="color:rgba(255,255,255,.9);font-weight:500;">There is no talking your way around the number.</span> I have built the operating model a company raised on, which is a good way to find out how much of a forecast is assumption stacked on assumption. I would rather answer for that than hand it to someone else.
       </p>
     </div>
 
     <!-- Track record -->
-    <div class="fin-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3.5rem;">
+    <div class="fin-grid" style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:1.5rem;margin-bottom:3.5rem;">
 
       <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
@@ -396,7 +394,6 @@
           <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Assessed 150 attendee evaluations, achieving a 90%+ satisfaction rate</li>
         </ul>
       </div>
-    </div>
 
       <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
@@ -436,7 +433,10 @@
           <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Generated 1,000+ early sign-ups and waitlist registrations ahead of the planned launch</li>
         </ul>
       </div>
-<!-- Coursework + tools -->
+
+    </div>
+
+    <!-- Coursework + tools -->
     <div class="reveal rv1 fin-foot" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding-top:2.75rem;border-top:1px solid rgba(255,255,255,.08);">
       <div>
         <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;">Relevant Coursework</div>
@@ -737,9 +737,9 @@
         <div style="font-size:.8125rem;line-height:1.55;color:rgba(255,255,255,.35);margin-top:.35rem;">High schoolers nationwide</div>
       </div>
       <div style="text-align:center;padding:2.5rem 1.5rem;">
-        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:800;letter-spacing:-.035em;color:var(--gold);line-height:1.5;">INCubatoredu</div>
-        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.625rem;">Program Partner</div>
-        <div style="font-size:.8125rem;line-height:1.55;color:rgba(255,255,255,.35);margin-top:.35rem;">Uncharted Learning</div>
+        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums;">80+</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.625rem;">School Districts</div>
+        <div style="font-size:.8125rem;line-height:1.55;color:rgba(255,255,255,.35);margin-top:.35rem;">Uncharted Learning INCubatoredu network</div>
       </div>
     </div>
   </div>
@@ -761,6 +761,17 @@
 
 
 <script>
+  // Hero video — drone-at-speed playback, held back for reduced-motion users
+  (function () {
+    const v = document.getElementById('hero-video');
+    if (!v) return;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => { v.playbackRate = calm.matches ? 1 : 2.6; };
+    v.addEventListener('loadedmetadata', apply);
+    calm.addEventListener('change', apply);
+    apply();
+  })();
+
   // Experience accordion
   function toggleExp(row) {
     const isOpen = row.classList.contains('open');
