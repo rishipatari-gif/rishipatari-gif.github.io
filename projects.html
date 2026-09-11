@@ -48,12 +48,13 @@
       padding: 7rem 1.5rem 4rem;
       overflow: hidden;
     }
-    .page-hero::after {
+    .hero-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(253,181,21,.08) 0%, transparent 65%);
+      background: radial-gradient(ellipse 65% 45% at 50% 38%, rgba(253,181,21,.07) 0%, transparent 70%);
       pointer-events: none;
+      z-index: 0;
     }
 
     /* Reveal */
@@ -177,7 +178,8 @@
 
 
 <!-- PAGE HERO -->
-<header class="page-hero grain" style="background:var(--blue-deep);">
+<div class="grain hero-wrap" style="position:relative;background:linear-gradient(180deg,#03111f 0%,#061a2e 58%,#04101d 100%);">
+<header class="page-hero" style="background:transparent;">
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-3 mb-4">
       <div class="h-px w-8" style="background:var(--gold);" aria-hidden="true"></div>
@@ -194,7 +196,7 @@
 
 
 <!-- ═══ STATS CALLOUT · SIMPLIFY TECH ═══ -->
-<section style="background:linear-gradient(178deg,#03111f 0%,#061a2e 55%,#04101d 100%);padding:5.5rem 2rem;">
+<section style="background:transparent;padding:4rem 2rem 6rem;">
   <div style="max-width:72rem;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:3rem;">
       <div style="display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.25rem;">
@@ -223,6 +225,7 @@
     </div>
   </div>
 </section>
+</div>
 
 
 <!-- PROJECTS -->
