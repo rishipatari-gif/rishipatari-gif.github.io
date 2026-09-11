@@ -130,64 +130,6 @@
       padding: 1.75rem;
     }
 
-    /* ── Exp row ── */
-    .exp-item { border-bottom: 1px solid rgba(255,255,255,.06); }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-row {
-      display: grid;
-      grid-template-columns: 2.75rem 1fr auto auto 1.5rem;
-      gap: 1.25rem;
-      align-items: center;
-      padding: 1.25rem 0;
-      cursor: pointer;
-      user-select: none;
-      border-radius: .5rem;
-      transition: background 200ms ease;
-      width: 100%;
-    }
-    .exp-row:hover { background: rgba(255,255,255,.04); }
-    .exp-chevron {
-      width: 1.25rem; height: 1.25rem;
-      color: rgba(255,255,255,.25);
-      transition: transform 280ms cubic-bezier(0.16,1,0.3,1), color 200ms ease;
-      flex-shrink: 0;
-      justify-self: end;
-    }
-    .exp-row.open .exp-chevron { transform: rotate(180deg); color: var(--gold); }
-    .exp-dropdown {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 420ms cubic-bezier(0.16,1,0.3,1);
-    }
-    .exp-dropdown.open { max-height: 600px; }
-    .exp-bullets-list {
-      list-style: none;
-      padding: .25rem 0 1.125rem 4rem;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-    .exp-bullets-list li {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,.6);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-    .exp-bullets-list li::before {
-      content: '';
-      position: absolute;
-      left: 0; top: .6em;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: .6;
-    }
-
-    /* ── Skill pill ── */
-    .skill-pill { transition: background 200ms ease, color 200ms ease, transform 200ms cubic-bezier(0.16,1,0.3,1); cursor: default; }
-    .skill-pill:hover { background: var(--blue) !important; color: white !important; transform: translateY(-2px); }
 
     /* ── Avatar ── */
     @keyframes av-float {
@@ -224,9 +166,6 @@
       .steps-grid .mockup-swap { order: -1 !important; }
       .beyond-grid { grid-template-columns: 1fr !important; }
       .beyond-avatar { order: -1; }
-      .exp-row { grid-template-columns: 2.75rem 1fr 1.5rem; }
-      .exp-row .exp-tag, .exp-row .exp-date { display: none; }
-      .exp-bullets-list { padding-left: 1.5rem; }
       .stats-grid { grid-template-columns: 1fr !important; }
       .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
       .nav-links { display: none !important; }
@@ -236,37 +175,7 @@
       .fade-up, .reveal { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
     }
 
-    /* ── #about light / inverted ── */
-    #about .exp-item { border-bottom-color: rgba(0,50,98,.1); }
-    #about .skill-pill { background: rgba(0,50,98,.06) !important; color: var(--blue) !important; border-color: rgba(0,50,98,.14) !important; }
-    #about .skill-pill:hover { background: var(--blue) !important; color: white !important; }
 
-    /* ── Exp card (blue floating box) ── */
-    .exp-card {
-      background: var(--blue);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      padding: 0.25rem 1.75rem;
-      box-shadow:
-        0 0 0 1px rgba(253,181,21,.12),
-        0 8px 32px rgba(0,50,98,.28),
-        0 28px 80px rgba(0,50,98,.22);
-    }
-    .exp-card .exp-item { border-bottom-color: rgba(255,255,255,.1); }
-    .exp-card .exp-item:last-child { border-bottom: none; }
-    .exp-card .exp-row:hover { background: rgba(255,255,255,.05); }
-    .exp-card .exp-row > div:first-child {
-      background: rgba(255,255,255,.1) !important;
-      border-color: rgba(255,255,255,.16) !important;
-    }
-    .exp-card .exp-row > div:first-child > span { color: rgba(255,255,255,.85) !important; }
-    .exp-card .exp-row > div:nth-child(2) > div:first-child { color: rgba(255,255,255,.92) !important; }
-    .exp-card .exp-row > div:nth-child(2) > div:nth-child(2) { color: rgba(255,255,255,.55) !important; }
-    .exp-card .exp-row .exp-date { color: #ffffff !important; }
-    .exp-card .exp-tag-muted {
-      background: rgba(255,255,255,.1) !important;
-      color: rgba(255,255,255,.65) !important;
-    }
   </style>
 </head>
 <body>
@@ -481,12 +390,12 @@
           <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
           <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);opacity:.65;">Background</span>
         </div>
-        <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--fg);white-space:nowrap;">Six roles and counting</h2>
+        <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--fg);white-space:nowrap;">Education</h2>
       </div>
     </div>
 
     <!-- Education -->
-    <div class="reveal rv1" style="margin-bottom:3rem;">
+    <div class="reveal rv1">
       <div style="background:var(--blue);border-radius:1.5rem;padding:1.5rem 1.75rem;box-shadow:0 0 0 1px rgba(253,181,21,.12),0 8px 32px rgba(0,50,98,.28);">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
           <div>
@@ -505,145 +414,8 @@
       </div>
     </div>
 
-    <!-- Experience list -->
-    <div class="reveal rv2" style="margin-bottom:3.5rem;">
-      <div class="exp-card">
 
-      <!-- AnthrAI -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">AI</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">AnthrAI</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">GTM &amp; Strategy Intern</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">GTM</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">May–Aug '26</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="AnthrAI details">
-          <ul class="exp-bullets-list">
-            <li>Owned full-funnel outbound from ICP definition to sequenced sending, booking 20+ meetings across 100+ accounts</li>
-            <li>Coordinated with executives on go-to-market strategy, customer validation, and model analysis for AI test agents</li>
-            <li>Partnered with developers to align feature milestones with business adoption and monetization goals across initial pilots</li>
-            <li>Analyzed customer interviews and pilot feedback to guide product feature updates</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- IKONA Partners -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">IK</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">IKONA Partners</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Investment Banking Spring Analyst</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">M&amp;A / PE</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jan–May '26</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="IKONA Partners details">
-          <ul class="exp-bullets-list">
-            <li>Sourced enterprise software startups with high M&amp;A probability and acquisition potential</li>
-            <li>Built and maintained a deal pipeline with a response and conversion rate above 25% through founder outreach</li>
-            <li>Conducted business driver analysis, projected growth metrics, and performed profit and loss statement evaluation</li>
-            <li>Established a CRM of 1,000+ targets, logging founder conversations and tracking accounts from partner-level meetings</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Eos AI -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">EOS</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">
-              Eos AI
-              <span style="font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:rgba(253,181,21,.15);color:var(--gold);margin-left:.375rem;">YC W26</span>
-            </div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Founding Strategy &amp; Operations Lead</div>
-          </div>
-          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(253,181,21,.12);color:rgba(253,181,21,.9);">TechCrunch</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Sep–Dec '25</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="Eos AI details">
-          <ul class="exp-bullets-list">
-            <li>First business hire, leading growth, finance, and design alongside the founding engineering team through the seed stage</li>
-            <li>Prepared the operating model, burn forecasts, and financial projections underpinning investor decks used in 10+ seed funding conversations</li>
-            <li>Pitched live at TechCrunch Startup Battlefield and in the Y Combinator Winter 26 batch</li>
-            <li>Led outbound to radiology and pathology groups, converting pilot users into the company's first paying accounts</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Simplify Tech -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">ST</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">Simplify Tech</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">AI Agent Developer · EdTech</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">AI / EdTech</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jun–Dec '25</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="Simplify Tech details">
-          <ul class="exp-bullets-list">
-            <li>Built an educator-approved AI agent deployed across 300+ classrooms for 10,000+ high school students nationwide</li>
-            <li>Designed the AI ideation agent on n8n for student entrepreneurs in the Uncharted Learning INCubatoredu program</li>
-            <li>Engineered prompts to guide students through market research, competitive analysis, and pricing models</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- FulcrumGT -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">FG</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">FulcrumGT – Fulcrum Labs</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Venture Development Lead</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">Product / PM</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">2023–2025</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="FulcrumGT details">
-          <ul class="exp-bullets-list">
-            <li>Secured $1,000,000+ in seed funding from FulcrumGT executive board and submitted two patents for app algorithms</li>
-            <li>Developed prototypes, wireframes, and UI designs for Seal, an online dating and matchmaking app</li>
-            <li>Received App Store approval and generated 1,000+ sign-ups and waitlist registrations ahead of launch</li>
-          </ul>
-        </div>
-      </div>
-
-      </div><!-- /exp-card -->
-    </div>
-
-      </div>
+  </div>
 </section>
 
 
@@ -803,15 +575,6 @@
     assign(layers[1], 1);
     calm.addEventListener('change', () => layers.forEach(l => { l.playbackRate = rate(); }));
   })();
-
-  // Experience accordion
-  function toggleExp(row) {
-    const isOpen = row.classList.contains('open');
-    row.classList.toggle('open', !isOpen);
-    row.setAttribute('aria-expanded', String(!isOpen));
-    const dropdown = row.nextElementSibling;
-    if (dropdown) dropdown.classList.toggle('open', !isOpen);
-  }
 
   // Nav scroll effect
   const nav = document.getElementById('nav');
