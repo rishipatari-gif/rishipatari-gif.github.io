@@ -74,7 +74,18 @@
       box-shadow: 0 28px 70px rgba(0,50,98,.16), 0 8px 20px rgba(0,50,98,.08);
     }
 
-    /* Media gallery */
+    /* Stat panel */
+    .stat-quad { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem 1rem; }
+    .stat-n {
+      font-family: 'EB Garamond', serif; font-weight: 800; color: var(--gold);
+      font-size: clamp(1.5rem, 2.6vw, 2.25rem); line-height: 1.1; letter-spacing: -.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-l {
+      font-size: .7rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-top: .3rem; line-height: 1.35;
+    }
+
     .media-gallery { display: grid; gap: 8px; }
     .media-gallery.two-col { grid-template-columns: 1fr 1fr; }
     .media-thumb {
@@ -176,10 +187,10 @@
       <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);opacity:.7;">Selected Work</span>
     </div>
     <h1 class="font-serif font-semibold text-white" style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,7vw,4.5rem);letter-spacing:-.03em;line-height:1.08;max-width:600px;">
-      Things I've<br><em style="color:var(--gold);">built</em>
+      Things I've<br><em style="color:var(--gold);">worked on</em>
     </h1>
     <p class="font-sans text-base mt-4 max-w-lg" style="color:rgba(255,255,255,.5);line-height:1.7;">
-      From Y Combinator startups to AI agents in 300+ classrooms — here are three projects that represent my best work.
+      Three roles, and the numbers they actually produced.
     </p>
   </div>
 </header>
@@ -189,58 +200,29 @@
 <main class="py-16 md:py-20 px-6">
   <div class="max-w-6xl mx-auto space-y-16">
 
-
-    <!-- ── PROJECT 1: SEAL APP ── -->
     <article class="proj-card reveal">
       <div class="grid lg:grid-cols-2 gap-0">
 
-        <!-- Acquisition panel -->
-        <div class="relative p-6 md:p-8 flex flex-col justify-center" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:360px;">
-
-          <!-- Grain overlay -->
-          <div style="position:absolute;inset:0;pointer-events:none;opacity:.04;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22300%22 height=%22300%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:180px 180px;" aria-hidden="true"></div>
-
-          <!-- Radial glow -->
-          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(253,181,21,.07) 0%, transparent 70%);pointer-events:none;" aria-hidden="true"></div>
-
-          <div class="relative z-10 flex flex-col items-center text-center gap-6 py-8">
-
-            <!-- Shield / lock icon -->
-            <div style="width:64px;height:64px;border-radius:1rem;background:rgba(253,181,21,.12);border:1px solid rgba(253,181,21,.2);display:flex;align-items:center;justify-content:center;">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color:var(--gold);">
-                <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-
-            <!-- Acquired badge -->
-            <div>
-              <span class="font-sans text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full" style="background:rgba(253,181,21,.15);color:var(--gold);border:1px solid rgba(253,181,21,.25);">Algorithm Acquired</span>
-            </div>
-
-            <div>
-              <p class="font-serif text-white font-semibold mb-1" style="font-family:'EB Garamond',serif;font-size:1.35rem;letter-spacing:-.02em;">Acquired by FulcrumGT</p>
-              <p class="font-sans text-sm" style="color:rgba(255,255,255,.4);line-height:1.6;max-width:260px;">The proprietary matching algorithm was acquired. The consumer app was never publicly released.</p>
-            </div>
-
-            <!-- Stats row -->
-            <div class="flex items-center gap-6 pt-2" style="border-top:1px solid rgba(255,255,255,.08);width:100%;justify-content:center;">
-              <div class="text-center">
-                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">$1M+</p>
-                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Seed Funding</p>
+        <!-- Stats panel -->
+        <div class="relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:360px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10 stat-quad">
+              <div class="stat-cell">
+                <p class="stat-n">1,300+</p>
+                <p class="stat-l">Prospects Networked</p>
               </div>
-              <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
-              <div class="text-center">
-                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">2</p>
-                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Patents Filed</p>
+              <div class="stat-cell">
+                <p class="stat-n">8</p>
+                <p class="stat-l">Panelists Secured</p>
               </div>
-              <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
-              <div class="text-center">
-                <p class="font-serif font-bold" style="font-family:'EB Garamond',serif;color:var(--gold);font-size:1.5rem;">1K+</p>
-                <p class="font-sans text-xs" style="color:rgba(255,255,255,.35);">Waitlist</p>
+              <div class="stat-cell">
+                <p class="stat-n">5,000+</p>
+                <p class="stat-l">Students Engaged</p>
               </div>
-            </div>
-
+              <div class="stat-cell">
+                <p class="stat-n">90%+</p>
+                <p class="stat-l">Satisfaction Rate</p>
+              </div>
           </div>
         </div>
 
@@ -248,185 +230,168 @@
         <div class="p-6 md:p-8 flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">FulcrumGT · 2023–2025</span>
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">RISE &middot; Feb&ndash;Apr 2026</span>
             </div>
-            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">Seal — Dating &amp; Matchmaking App</h2>
+            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">RISE &mdash; Investment Banking Panel</h2>
             <p class="font-sans text-sm mb-5" style="color:var(--muted);line-height:1.75;">
-              Startup Project Manager for an online dating and matchmaking platform. Led product from concept to App Store approval — securing <strong style="color:var(--fg);">$1,000,000+</strong> in seed funding from the executive board, filing <strong style="color:var(--fg);">two patents</strong> on core algorithms, and generating <strong style="color:var(--fg);">1,000+ waitlist registrations</strong>. The matching algorithm was subsequently <strong style="color:var(--fg);">acquired by FulcrumGT</strong>; the consumer app was not released publicly.
+              Lead Outreach Coordinator for a Bay Area recruitment event putting students in front of investment banking professionals. I ran the panelist pipeline end to end, from the first cold email through to the night itself.
             </p>
 
-            <!-- Highlights -->
             <ul class="space-y-2 mb-6">
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                $1M+ seed funding secured from executive board
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Secured 8 panelists from <strong style="color:var(--fg);">Goldman Sachs, Centerview Partners, Morgan Stanley and Evercore</strong></span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                2 patents submitted for app algorithms
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Ran marketing, outreach and resume workshops reaching 5,000+ students across the Bay Area</span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                App Store approved · 1,000+ waitlist registrations
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Assessed 150 attendee evaluations and interviews, clearing a 90% satisfaction rate</span>
               </li>
             </ul>
 
-            <!-- Tags -->
             <div class="flex flex-wrap mb-6" style="gap:5px;">
-              <span class="tag">Product Design</span>
-              <span class="tag">iOS App</span>
-              <span class="tag">Wireframing</span>
-              <span class="tag">Fundraising</span>
-              <span class="tag">Patent Filing</span>
-              <span class="tag">Acquisition</span>
+              <span class="tag">Outreach</span>
+              <span class="tag">Event Operations</span>
+              <span class="tag">Investment Banking</span>
+              <span class="tag">Recruiting</span>
             </div>
           </div>
-
         </div>
 
       </div>
     </article>
 
-
-    <!-- ── PROJECT 2: AI EDUCATION AGENT ── -->
     <article class="proj-card reveal rv1">
-      <div class="grid lg:grid-cols-2 gap-0" style="direction:rtl;">
-        <div style="direction:ltr;">
+      <div class="grid lg:grid-cols-2 gap-0">
 
-          <!-- Media panel -->
-          <div class="relative p-4 md:p-5 flex flex-col" style="background:rgba(253,181,21,.03);border-left:1px solid var(--border);">
-
-            <div class="media-thumb mb-2 flex-none" style="aspect-ratio:17/6;">
-              <img src="Ideation_image.png" alt="AI education agent screenshot" loading="lazy" style="object-fit:contain;object-position:top center;background:#fff;">
-            </div>
-
-            <div class="media-gallery flex-1 min-h-0" style="grid-template-columns:1fr 1fr;align-items:stretch;">
-              <div class="media-thumb" style="aspect-ratio:unset;height:100%;">
-                <img src="Classroom_image.png" alt="Classroom deployment photo" loading="lazy" style="object-fit:cover;object-position:center;">
-                <div style="position:absolute;inset:0;background:linear-gradient(to left,white 0%,transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+        <!-- Stats panel -->
+        <div class="relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:360px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10 stat-quad">
+              <div class="stat-cell">
+                <p class="stat-n">1,000+</p>
+                <p class="stat-l">Targets in CRM</p>
               </div>
-              <div class="media-thumb" style="aspect-ratio:unset;height:100%;">
-                <img src="Chat_image.png" alt="AI agent chat interface" loading="lazy" style="object-fit:cover;object-position:top;">
+              <div class="stat-cell">
+                <p class="stat-n">25%+</p>
+                <p class="stat-l">Pipeline Conversion</p>
               </div>
-            </div>
+              <div class="stat-cell">
+                <p class="stat-n">Enterprise SaaS</p>
+                <p class="stat-l">Sector Focus</p>
+              </div>
+              <div class="stat-cell">
+                <p class="stat-n">M&amp;A</p>
+                <p class="stat-l">Mandate</p>
+              </div>
           </div>
-
         </div>
 
         <!-- Info panel -->
-        <div style="direction:ltr;" class="p-6 md:p-8 flex flex-col justify-between">
+        <div class="p-6 md:p-8 flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Simplify Tech · 2025</span>
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">IKONA Partners &middot; Jan&ndash;May 2026</span>
             </div>
-            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">AI Ideation Agent for Student Entrepreneurs</h2>
+            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">IKONA Partners &mdash; IB Spring Analyst</h2>
             <p class="font-sans text-sm mb-5" style="color:var(--muted);line-height:1.75;">
-              Built an educator-approved AI agent deployed into <strong style="color:var(--fg);">300+ classrooms</strong> nationwide for <strong style="color:var(--fg);">10,000+ high school students</strong>. Engineered on Replit and n8n to guide student entrepreneurs through product ideation, market research, competitive analysis, and pricing.
+              Sourced and screened enterprise software acquisition targets for a B2B software advisory practice. Built the deal pipeline from nothing and ran first-pass diligence on every name that entered it.
             </p>
 
             <ul class="space-y-2 mb-6">
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                300+ classrooms · 10,000+ students nationwide
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Sourced high-growth enterprise software startups with high M&amp;A probability and strategic acquisition potential</span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Educator approved via Uncharted Learning INCubatoredu
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Ran business driver analysis, growth projections and <strong style="color:var(--fg);">profit and loss statement evaluation</strong> on each target</span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Built on Replit + n8n agentic AI platform
-              </li>
-              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Guided students through full entrepreneurship workflow
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Logged founder conversations and tracked accounts through to partner-level meetings</span>
               </li>
             </ul>
 
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="tag">Agentic AI</span>
-              <span class="tag">n8n</span>
-              <span class="tag">Replit</span>
-              <span class="tag">Prompt Engineering</span>
-              <span class="tag">EdTech</span>
+            <div class="flex flex-wrap mb-6" style="gap:5px;">
+              <span class="tag">Deal Sourcing</span>
+              <span class="tag">M&amp;A</span>
+              <span class="tag">Diligence</span>
+              <span class="tag">P&amp;L Analysis</span>
+              <span class="tag">Valuation</span>
             </div>
           </div>
-
-          <div class="flex flex-wrap gap-3 pt-5" style="border-top:1px solid var(--border);">
-            <a href="https://uncharted-learning-ideation-agent-w.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-primary" aria-label="View AI Agent project">
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M5 1.5H2a1 1 0 00-1 1v8.5A1 1 0 002 12h8.5a1 1 0 001-1V8M7.5 1.5H12m0 0v4.5M12 1.5L5.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              View Project
-            </a>
-          </div>
         </div>
+
       </div>
     </article>
 
-
-    <!-- ── PROJECT 3: EOS AI ── -->
     <article class="proj-card reveal rv2">
       <div class="grid lg:grid-cols-2 gap-0">
 
-        <!-- Media panel -->
-        <div class="relative overflow-hidden" style="border-right:1px solid var(--border);min-height:320px;background:white;">
-          <img src="Eos_image.png" alt="Eos AI website screenshot" loading="lazy" style="position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);object-fit:cover;object-position:top;display:block;border-radius:0.5rem;">
-          <!-- Soft white blend on all edges -->
-          <div style="position:absolute;inset:0;background:linear-gradient(to right, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
-          <div style="position:absolute;inset:0;background:linear-gradient(to left, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top, white 0%, transparent 18%);pointer-events:none;z-index:2;" aria-hidden="true"></div>
+        <!-- Stats panel -->
+        <div class="relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:360px;">
+          <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
+          <div class="relative z-10 stat-quad">
+              <div class="stat-cell">
+                <p class="stat-n">10+</p>
+                <p class="stat-l">Seed Conversations</p>
+              </div>
+              <div class="stat-cell">
+                <p class="stat-n">YC W26</p>
+                <p class="stat-l">Batch</p>
+              </div>
+              <div class="stat-cell">
+                <p class="stat-n">TechCrunch</p>
+                <p class="stat-l">Startup Battlefield</p>
+              </div>
+              <div class="stat-cell">
+                <p class="stat-n">1st</p>
+                <p class="stat-l">Business Hire</p>
+              </div>
+          </div>
         </div>
 
         <!-- Info panel -->
         <div class="p-6 md:p-8 flex flex-col justify-between">
-          <div class="flex flex-col flex-1">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Eos AI · YC W26 · 2025</span>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Eos AI (YC W26) &middot; Sep&ndash;Dec 2025</span>
             </div>
-            <h2 class="font-serif text-3xl font-semibold mb-5" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">Eos AI — Healthcare Imaging Startup</h2>
-            <p class="font-sans text-sm mb-8" style="color:var(--muted);line-height:1.85;">
-              Founding Business Lead (1st business hire) at a healthcare tech imaging startup backed by <strong style="color:var(--fg);">Y Combinator W26</strong>. Participated in <strong style="color:var(--fg);">TechCrunch Startup Battlefield</strong>, built the initial pipeline, acquired paying customers, and led growth, outreach, and website design.
+            <h2 class="font-serif text-3xl font-semibold mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;color:var(--fg);">Eos AI &mdash; Strategy &amp; Operations</h2>
+            <p class="font-sans text-sm mb-5" style="color:var(--muted);line-height:1.75;">
+              First business hire at a healthcare imaging startup, owning growth, finance and design alongside the founding engineering team through the seed stage.
             </p>
 
-            <ul class="space-y-4 mb-8">
+            <ul class="space-y-2 mb-6">
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Y Combinator Winter 2026 Batch
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Built the <strong style="color:var(--fg);">operating model, burn forecasts and financial projections</strong> underpinning the investor deck</span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                TechCrunch Startup Battlefield participant
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Pitched live at TechCrunch Startup Battlefield and in the Y Combinator Winter 26 batch</span>
               </li>
               <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Created initial pipeline &amp; acquired paying customers
-              </li>
-              <li class="flex items-start gap-2 font-sans text-sm" style="color:var(--muted);">
-                <span style="color:var(--gold);margin-top:2px;">✦</span>
-                Developed GTM strategy, pricing, runway burn projections
+                <span style="color:var(--gold);margin-top:2px;" aria-hidden="true">&#10022;</span>
+                <span>Led outbound to radiology and pathology groups, converting pilot users into the first paying accounts</span>
               </li>
             </ul>
 
-            <div class="flex flex-wrap gap-2 mb-8">
+            <div class="flex flex-wrap mb-6" style="gap:5px;">
+              <span class="tag">Financial Modeling</span>
+              <span class="tag">Fundraising</span>
+              <span class="tag">Go-to-Market</span>
               <span class="tag">Healthcare AI</span>
-              <span class="tag">YC W26</span>
-              <span class="tag">GTM Strategy</span>
-              <span class="tag">B2B Sales</span>
-              <span class="tag">Growth</span>
             </div>
-          </div>
-
-          <div class="flex flex-wrap gap-3 pt-5" style="border-top:1px solid var(--border);">
-            <a href="https://www.helloeos.ai/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-primary" aria-label="Visit Eos AI website">
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M5 1.5H2a1 1 0 00-1 1v8.5A1 1 0 002 12h8.5a1 1 0 001-1V8M7.5 1.5H12m0 0v4.5M12 1.5L5.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Visit Site
-            </a>
           </div>
         </div>
 
       </div>
     </article>
-
 
   </div>
 </main>
