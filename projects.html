@@ -14,12 +14,14 @@
       --blue:      #003262;
       --blue-mid:  #0B4F8A;
       --blue-dark: #001830;
+      --blue-deep: #03111f;
+      --blue-card: #061830;
       --gold:      #FDB515;
       --gold-lt:   #FFCC47;
       --fg:        #09090B;
       --muted:     #71717A;
       --border:    #E4E4E7;
-      --bg:        #F4F4F5;
+      --bg:        #FAFAFA;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -175,7 +177,7 @@
 
 
 <!-- PAGE HERO -->
-<header class="page-hero grain" style="background:var(--blue-dark);">
+<header class="page-hero grain" style="background:var(--blue-deep);">
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="flex items-center gap-3 mb-4">
       <div class="h-px w-8" style="background:var(--gold);" aria-hidden="true"></div>
@@ -192,7 +194,7 @@
 
 
 <!-- ═══ STATS CALLOUT · SIMPLIFY TECH ═══ -->
-<section style="background:#061422;padding:5.5rem 2rem;">
+<section style="background:linear-gradient(178deg,#03111f 0%,#061a2e 55%,#04101d 100%);padding:5.5rem 2rem;">
   <div style="max-width:72rem;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:3rem;">
       <div style="display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.25rem;">
@@ -231,7 +233,7 @@
       <div class="grid lg:grid-cols-5 gap-0">
 
         <!-- Identity panel -->
-        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border-right:1px solid rgba(253,181,21,.10);min-height:260px;">
           <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
           <div class="relative z-10">
             <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Feb&ndash;Apr 2026</p>
@@ -275,7 +277,7 @@
       <div class="grid lg:grid-cols-5 gap-0">
 
         <!-- Identity panel -->
-        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border-right:1px solid rgba(253,181,21,.10);min-height:260px;">
           <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
           <div class="relative z-10">
             <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Jan&ndash;May 2026</p>
@@ -324,7 +326,7 @@
       <div class="grid lg:grid-cols-5 gap-0">
 
         <!-- Identity panel -->
-        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:var(--blue-dark);border-right:1px solid var(--border);min-height:260px;">
+        <div class="lg:col-span-2 relative p-6 md:p-8 flex flex-col justify-center grain" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border-right:1px solid rgba(253,181,21,.10);min-height:260px;">
           <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 70% at 30% 20%, rgba(253,181,21,.10) 0%, transparent 70%);" aria-hidden="true"></div>
           <div class="relative z-10">
             <p class="font-sans text-xs font-semibold uppercase tracking-widest" style="color:var(--gold);">Sep&ndash;Dec 2025 &middot; YC W26</p>
@@ -377,7 +379,7 @@
 
 
 <!-- CTA strip -->
-<section class="py-16 px-6 text-center grain relative overflow-hidden" style="background:var(--blue);">
+<section class="py-16 px-6 text-center grain relative overflow-hidden" style="background:#061a2e;">
   <div class="absolute inset-0" style="background:radial-gradient(ellipse 60% 80% at 50% 110%, rgba(253,181,21,.15) 0%, transparent 65%);" aria-hidden="true"></div>
   <div class="relative z-10 max-w-xl mx-auto">
     <h2 class="font-serif text-3xl font-semibold text-white mb-3" style="font-family:'EB Garamond',serif;letter-spacing:-.02em;">Want to work together?</h2>
@@ -394,7 +396,7 @@
 
 
 <!-- FOOTER -->
-<footer class="py-8 px-6 text-center" style="background:var(--blue-dark);border-top:1px solid rgba(255,255,255,.05);">
+<footer class="py-8 px-6 text-center" style="background:var(--blue-deep);border-top:1px solid rgba(255,255,255,.05);">
   <p class="font-sans text-xs mb-3" style="color:rgba(255,255,255,.25);">© 2025 Rishi Patari · UC Berkeley</p>
   <div class="flex items-center justify-center gap-6">
     <a href="index.html"    class="font-sans text-xs" style="color:rgba(255,255,255,.35);transition:color 200ms ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Home</a>
