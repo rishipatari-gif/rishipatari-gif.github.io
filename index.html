@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rishi Patari — UC Berkeley</title>
+  <title>Rishi Patari — UC Berkeley | Finance &amp; Investing</title>
+  <meta name="description" content="Rishi Patari — UC Berkeley Haas '29. Investment banking spring analyst, founding operator, and builder of the operating models behind early-stage fundraises.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,8 +198,21 @@
     .av-blink-l, .av-blink-r { transform-box: fill-box; transform-origin: center; transform: scaleY(0); animation: av-blink 6s ease-in-out infinite; }
     .av-blink-r { animation-delay: 0.06s; }
 
+    /* ── Finance cards ── */
+    .fin-card { transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease; }
+    .fin-card:hover { transform: translateY(-4px); box-shadow: 0 28px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(253,181,21,.18) inset; }
+    .btn-ghost { transition: background 200ms ease, border-color 200ms ease, transform 200ms cubic-bezier(0.16,1,0.3,1); }
+    .btn-ghost:hover { background: rgba(255,255,255,.12); border-color: rgba(253,181,21,.5); }
+    .btn-ghost:active { transform: translateY(1px); }
+
     /* Mobile */
     @media (max-width: 768px) {
+      .fin-grid { grid-template-columns: 1fr !important; }
+      .hero-stats { gap: 1.125rem !important; }
+      .hero-stats > div { min-width: 0; flex: 1 1 0; }
+      .hero-stats .stat-num { font-size: 1.75rem !important; }
+      .hero-stats .stat-lbl { font-size: .6rem !important; letter-spacing: .05em !important; }
+      .fin-foot { grid-template-columns: 1fr !important; gap: 2rem !important; }
       .hero-video::after { background: linear-gradient(to bottom, rgba(3,17,31,.72) 0%, rgba(3,17,31,.42) 45%, rgba(3,17,31,.82) 100%); }
       .hero-text { margin: 0; padding: 7rem 1.5rem 4rem; max-width: 100%; width: 100%; }
       .steps-grid { grid-template-columns: 1fr !important; }
@@ -210,7 +224,7 @@
       .exp-bullets-list { padding-left: 1.5rem; }
       .stats-grid { grid-template-columns: 1fr !important; }
       .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
-      .nav-links { display: none; }
+      .nav-links { display: none !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -297,24 +311,24 @@
     </h1>
 
     <!-- Tagline -->
-    <p class="fade-up d3" style="font-size:1.0625rem;font-weight:400;line-height:1.7;color:rgba(255,255,255,.5);max-width:22rem;margin-bottom:2.5rem;">
-      Builder at the intersection of<br>
-      <span style="color:rgba(255,255,255,.82);font-weight:500;">business, data &amp; AI</span>
+    <p class="fade-up d3" style="font-size:1.0625rem;font-weight:400;line-height:1.7;color:rgba(255,255,255,.62);max-width:31rem;margin-bottom:2.5rem;">
+      I work on deals and the models underneath them —<br>
+      <span style="color:rgba(255,255,255,.88);font-weight:500;">M&amp;A sourcing, operating forecasts, early-stage finance</span>
     </p>
 
     <!-- Mini stats -->
-    <div class="fade-up d4" style="display:flex;gap:3rem;padding-bottom:2.25rem;margin-bottom:2.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
+    <div class="fade-up d4 hero-stats" style="display:flex;gap:3rem;padding-bottom:2.25rem;margin-bottom:2.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
       <div>
-        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">$1M+</div>
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Seed Raised</div>
+        <div class="stat-num" style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">$1M+</div>
+        <div class="stat-lbl" style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;">Seed Capital Raised</div>
       </div>
       <div>
-        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">10K+</div>
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Students Reached</div>
+        <div class="stat-num" style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:tabular-nums;">1,000+</div>
+        <div class="stat-lbl" style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;">Deal Targets Sourced</div>
       </div>
       <div>
-        <div style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);">YC W26</div>
-        <div style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.25rem;">Y Combinator · 1st Biz Hire</div>
+        <div class="stat-num" style="font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:700;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:tabular-nums;">25%+</div>
+        <div class="stat-lbl" style="font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;">Pipeline Conversion</div>
       </div>
     </div>
 
@@ -325,7 +339,12 @@
          onmouseover="this.style.background='var(--gold-lt)';this.style.boxShadow='0 8px 32px rgba(253,181,21,.38)'"
          onmouseout="this.style.background='var(--gold)';this.style.boxShadow='none'">
         View Projects
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="Rishi_Patari_Resume.pdf" target="_blank" rel="noopener" class="btn-ghost"
+         style="display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;color:rgba(255,255,255,.9);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:.75rem 1.75rem;border-radius:9999px;text-decoration:none;cursor:pointer;">
+        Résumé
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v8m0 0L4 7m3 3l3-3M2 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </div>
@@ -333,6 +352,310 @@
   <!-- Scroll line -->
   <div style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:.5rem;" aria-hidden="true">
     <div style="width:1px;height:3rem;background:linear-gradient(to bottom,transparent,rgba(253,181,21,.45));animation:scrollBar 2.2s ease-in-out infinite;"></div>
+  </div>
+</section>
+
+
+<!-- ═══ FINANCE ═══ -->
+<section id="finance" style="background:linear-gradient(178deg,#03111f 0%,#061a2e 55%,#04101d 100%);padding:7rem 2rem;position:relative;overflow:hidden;">
+  <div aria-hidden="true" style="position:absolute;top:12%;right:-5%;width:38%;height:45%;background:radial-gradient(circle,rgba(253,181,21,.06) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:72rem;margin:0 auto;position:relative;">
+
+    <!-- Intro -->
+    <div class="reveal" style="max-width:44rem;margin-bottom:4rem;">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.375rem;">
+        <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
+        <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);opacity:.8;">Finance &amp; Investing</span>
+      </div>
+
+      <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:white;margin-bottom:1.75rem;">
+        Why I want to do this work
+      </h2>
+
+      <p style="font-size:1.0625rem;line-height:1.85;color:rgba(255,255,255,.66);margin-bottom:1.25rem;">
+        I came to finance from the operating side. At <span style="color:rgba(255,255,255,.9);font-weight:500;">Eos AI</span> I built the operating model, burn forecasts, and projections behind the deck we took into ten-plus seed conversations — which is where I learned what a number has to survive before an investor believes it.
+      </p>
+      <p style="font-size:1.0625rem;line-height:1.85;color:rgba(255,255,255,.66);">
+        At <span style="color:rgba(255,255,255,.9);font-weight:500;">IKONA Partners</span> I sat on the other side of that table, sourcing enterprise software targets and working through P&amp;Ls to judge which businesses were actually worth acquiring. Private equity is where those two habits meet: you have to understand an operating business well enough to underwrite it. That is the work I want to get good at.
+      </p>
+    </div>
+
+    <!-- Track record -->
+    <div class="fin-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3.5rem;">
+
+      <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
+          <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">Deal Sourcing &amp; Diligence</span>
+          <span style="font-size:.75rem;color:rgba(255,255,255,.4);">IKONA Partners · Jan–May 2026</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:white;line-height:1.15;">Investment Banking Spring Analyst</h3>
+        <ul style="list-style:none;padding:0;margin:1.1rem 0 0;display:flex;flex-direction:column;gap:.55rem;">
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Sourced high-growth enterprise software startups with high M&amp;A probability and strategic acquisition potential</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Ran business driver analysis, projected growth metrics, and profit &amp; loss statement evaluation</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Built a 1,000+ target CRM and a qualified pipeline converting above 25% through direct founder outreach</li>
+        </ul>
+      </div>
+      <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
+          <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">Modeling &amp; Forecasting</span>
+          <span style="font-size:.75rem;color:rgba(255,255,255,.4);">Eos AI (YC W26) · Sep–Dec 2025</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:white;line-height:1.15;">Founding Strategy &amp; Operations Lead</h3>
+        <ul style="list-style:none;padding:0;margin:1.1rem 0 0;display:flex;flex-direction:column;gap:.55rem;">
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Prepared the operating model, burn forecasts, and financial projections underpinning investor decks</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Those decks carried 10+ seed funding conversations, including TechCrunch Startup Battlefield and YC W26</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>First business hire — owned growth, finance, and design alongside the founding engineering team</li>
+        </ul>
+      </div>
+      <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
+          <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">Capital Formation</span>
+          <span style="font-size:.75rem;color:rgba(255,255,255,.4);">FulcrumGT · 2023–2025</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:white;line-height:1.15;">Venture Development Lead</h3>
+        <ul style="list-style:none;padding:0;margin:1.1rem 0 0;display:flex;flex-direction:column;gap:.55rem;">
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Secured $1,000,000+ in seed funding from the FulcrumGT executive board</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Submitted two patents for app algorithms and carried the product to App Store approval</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Generated 1,000+ early sign-ups and waitlist registrations ahead of the planned launch</li>
+        </ul>
+      </div>
+      <div class="reveal fin-card" style="background:linear-gradient(145deg,#061830 0%,#0a2244 100%);border:1px solid rgba(253,181,21,.14);border-radius:1.25rem;padding:1.75rem;box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 0 1px rgba(253,181,21,.05) inset;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem;">
+          <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">Street Exposure</span>
+          <span style="font-size:.75rem;color:rgba(255,255,255,.4);">RISE IB Panel · Feb–Apr 2026</span>
+        </div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:white;line-height:1.15;">Lead Outreach Coordinator</h3>
+        <ul style="list-style:none;padding:0;margin:1.1rem 0 0;display:flex;flex-direction:column;gap:.55rem;">
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Networked 1,300+ prospects to secure 8 panelists from Goldman Sachs, Centerview, Morgan Stanley and Evercore</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Ran outreach and resume workshops engaging 5,000+ students across the Bay Area</li>
+          <li style="font-size:.9375rem;line-height:1.7;color:rgba(255,255,255,.66);padding-left:1.15rem;position:relative;"><span aria-hidden="true" style="position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7;"></span>Assessed 150 attendee evaluations, achieving a 90%+ satisfaction rate</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Coursework + tools -->
+    <div class="reveal rv1 fin-foot" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding-top:2.75rem;border-top:1px solid rgba(255,255,255,.08);">
+      <div>
+        <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;">Relevant Coursework</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(253,181,21,.3);color:rgba(253,181,21,.85);">Financial Accounting</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Microeconomic Analysis</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Multivariable Calculus</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Principles of Business</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;">Tools</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Excel</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Pitchbook</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Capital IQ</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Python</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">SQL</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">R</span>
+          <span style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);">Tableau</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ DARK: EXPERIENCE + ABOUT ═══ -->
+<section id="about" style="background:#FFFFFF;padding:7rem 2rem;">
+  <div style="max-width:72rem;margin:0 auto;">
+
+    <!-- Header row -->
+    <div class="reveal" style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:3.5rem;margin-bottom:3rem;border-bottom:1px solid rgba(0,50,98,.1);">
+      <div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.125rem;">
+          <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
+          <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);opacity:.65;">Background</span>
+        </div>
+        <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--fg);white-space:nowrap;">Six roles and counting</h2>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="reveal rv1" style="margin-bottom:3rem;">
+      <div style="background:var(--blue);border-radius:1.5rem;padding:1.5rem 1.75rem;box-shadow:0 0 0 1px rgba(253,181,21,.12),0 8px 32px rgba(0,50,98,.28);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);margin-bottom:.3rem;">University of California, Berkeley</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.55);line-height:1.65;">
+              B.S. Business Administration — <span style="color:rgba(255,255,255,.75);font-weight:500;">Haas School of Business</span><br>
+              B.A. Data Science — College of Computing, Data Science &amp; Society<br>
+              <span style="color:var(--gold);font-weight:500;">GPA: 3.9 / 4.0</span>
+            </div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.7);">Expected May 2029</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem;">Berkeley, CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience list -->
+    <div class="reveal rv2" style="margin-bottom:3.5rem;">
+      <div class="exp-card">
+
+      <!-- AnthrAI -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">AI</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">AnthrAI</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">GTM &amp; Strategy Intern</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">GTM</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">May–Aug '26</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="AnthrAI details">
+          <ul class="exp-bullets-list">
+            <li>Owned full-funnel outbound from ICP definition to sequenced sending, booking 20+ meetings across 100+ accounts</li>
+            <li>Coordinated with executives on go-to-market strategy, customer validation, and model analysis for AI test agents</li>
+            <li>Partnered with developers to align feature milestones with business adoption and monetization goals across initial pilots</li>
+            <li>Analyzed customer interviews and pilot feedback to guide product feature updates and future operational developments</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IKONA Partners -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">IK</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">IKONA Partners</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Investment Banking Spring Analyst</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">M&amp;A / PE</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jan–May '26</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="IKONA Partners details">
+          <ul class="exp-bullets-list">
+            <li>Sourced high-growth enterprise software startups with high M&amp;A probability and strong strategic acquisition potential</li>
+            <li>Built and maintained a qualified deal pipeline with a response and conversion rate above 25% through founder outreach</li>
+            <li>Conducted business driver analysis, projected growth metrics, and performed profit and loss statement evaluation</li>
+            <li>Established a CRM of 1,000+ targets, logging founder conversations and tracking accounts from partner-level meetings</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Eos AI -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">EOS</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">
+              Eos AI
+              <span style="font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:rgba(253,181,21,.15);color:var(--gold);margin-left:.375rem;">YC W26</span>
+            </div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Founding Strategy &amp; Operations Lead</div>
+          </div>
+          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(253,181,21,.12);color:rgba(253,181,21,.9);">TechCrunch</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Sep–Dec '25</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="Eos AI details">
+          <ul class="exp-bullets-list">
+            <li>First business hire — led growth, finance, and design alongside the founding engineering team through the seed stage</li>
+            <li>Prepared the operating model, burn forecasts, and financial projections underpinning investor decks used in 10+ seed funding conversations</li>
+            <li>Pitched live at TechCrunch Startup Battlefield and in the Y Combinator Winter 26 batch</li>
+            <li>Led outbound to radiology and pathology groups, converting early pilot users into the company's first paying accounts</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Simplify Tech -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">ST</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">Simplify Tech</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">AI Agent Developer · EdTech</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">AI / EdTech</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jun–Dec '25</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="Simplify Tech details">
+          <ul class="exp-bullets-list">
+            <li>Built an educator-approved AI agent deployed across 300+ classrooms for 10,000+ high school students nationwide</li>
+            <li>Designed the AI ideation agent on n8n for student entrepreneurs in the Uncharted Learning INCubatoredu program</li>
+            <li>Engineered prompts to guide students through market research, competitive analysis, and pricing models</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FulcrumGT -->
+      <div class="exp-item">
+        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
+             onclick="toggleExp(this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">FG</span>
+          </div>
+          <div>
+            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">FulcrumGT – Fulcrum Labs</div>
+            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Venture Development Lead</div>
+          </div>
+          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">Product / PM</span>
+          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">2023–2025</span>
+          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-dropdown" role="region" aria-label="FulcrumGT details">
+          <ul class="exp-bullets-list">
+            <li>Secured $1,000,000+ in seed funding from FulcrumGT executive board and submitted two patents for app algorithms</li>
+            <li>Developed prototypes, wireframes, and UI designs for Seal, an online dating and matchmaking app</li>
+            <li>Received App Store approval and generated 1,000+ early sign-up and waitlist registrations ahead of launch</li>
+          </ul>
+        </div>
+      </div>
+
+      </div><!-- /exp-card -->
+    </div>
+
+    <!-- Skills -->
+    <div class="reveal rv3" style="padding-top:3rem;border-top:1px solid rgba(0,50,98,.1);">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Skills &amp; Tools</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+<span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Financial Modeling</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Valuation &amp; Diligence</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Excel</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Pitchbook</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Capital IQ</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Python</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">SQL</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">R</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Tableau</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Go-to-Market Strategy</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Agentic AI Design</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Figma</span>
+        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Mandarin (Intermediate)</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -389,175 +712,6 @@
 </section>
 
 
-
-
-<!-- ═══ DARK: EXPERIENCE + ABOUT ═══ -->
-<section id="about" style="background:#FFFFFF;padding:7rem 2rem;">
-  <div style="max-width:72rem;margin:0 auto;">
-
-    <!-- Header row -->
-    <div class="reveal" style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:3.5rem;margin-bottom:3rem;border-bottom:1px solid rgba(0,50,98,.1);">
-      <div>
-        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.125rem;">
-          <div style="width:2.25rem;height:1px;background:var(--gold);"></div>
-          <span style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);opacity:.65;">Background</span>
-        </div>
-        <h2 style="font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--fg);white-space:nowrap;">5+ roles and counting</h2>
-      </div>
-    </div>
-
-    <!-- Education -->
-    <div class="reveal rv1" style="margin-bottom:3rem;">
-      <div style="background:var(--blue);border-radius:1.5rem;padding:1.5rem 1.75rem;box-shadow:0 0 0 1px rgba(253,181,21,.12),0 8px 32px rgba(0,50,98,.28);">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);margin-bottom:.3rem;">University of California, Berkeley</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.55);line-height:1.65;">
-              B.S. Business Administration — <span style="color:rgba(255,255,255,.75);font-weight:500;">Haas School of Business</span><br>
-              B.S. Data Science<br>
-              <span style="color:var(--gold);font-weight:500;">GPA: 3.9</span>
-            </div>
-          </div>
-          <div style="text-align:right;flex-shrink:0;">
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.7);">Expected May 2029</div>
-            <div style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem;">Berkeley, CA</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Experience list -->
-    <div class="reveal rv2" style="margin-bottom:3.5rem;">
-      <div class="exp-card">
-
-      <!-- AnthrAI -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">AI</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">AnthrAI</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Growth &amp; Go-to-Market Intern</div>
-          </div>
-          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(34,197,94,.15);color:#22c55e;display:flex;align-items:center;gap:.35rem;">
-            <span style="width:.35rem;height:.35rem;border-radius:50%;background:#22c55e;animation:pulse 2s ease-in-out infinite;display:inline-block;"></span>
-            Active
-          </span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">May 2026 –</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="AnthrAI details">
-          <ul class="exp-bullets-list">
-            <li>Coordinated with executives on go-to-market strategy, customer validation, and pricing model analysis for AI test agents</li>
-            <li>Partnered with developers to align feature milestones with business adoption and monetization goals across initial pilots</li>
-            <li>Analyzed customer interviews and pilot feedback to guide product feature updates and future operational developments</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- IKONA Partners -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">IK</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">IKONA Partners</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Investment Banking Analyst Intern</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">M&amp;A / PE</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Jan–May '26</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="IKONA Partners details">
-          <ul class="exp-bullets-list">
-            <li>Sourced high-growth enterprise software startups with high M&amp;A probability and strong strategic acquisition potential</li>
-            <li>Built and maintained a qualified deal pipeline with a response and conversion rate above 25% through founder outreach</li>
-            <li>Conducted initial business driver analysis, projected growth metrics, and performed profit and loss statement evaluation</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Eos AI -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(253,181,21,.15);border:1px solid rgba(253,181,21,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:var(--gold);">EOS</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">
-              Eos AI
-              <span style="font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:rgba(253,181,21,.15);color:var(--gold);margin-left:.375rem;">YC W26</span>
-            </div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Founding Business Lead · Healthcare AI</div>
-          </div>
-          <span class="exp-tag" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(253,181,21,.12);color:rgba(253,181,21,.9);">TechCrunch</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">Sep–Dec '25</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="Eos AI details">
-          <ul class="exp-bullets-list">
-            <li>1st business hire at Eos AI, a healthcare imaging startup — led growth, outreach, and visual design initiatives</li>
-            <li>Participated in TechCrunch Startup Battlefield &amp; Y Combinator Winter 26 Batch; built pipeline &amp; acquired paying customers</li>
-            <li>Developed business model, go-to-market strategy, pricing, runway burn projections, and led website design</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- FulcrumGT -->
-      <div class="exp-item">
-        <div class="exp-row" role="button" tabindex="0" aria-expanded="false"
-             onclick="toggleExp(this)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-          <div style="width:2.75rem;height:2.75rem;border-radius:.625rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8);">FG</span>
-          </div>
-          <div>
-            <div style="font-size:.9375rem;font-weight:600;color:rgba(255,255,255,.92);">FulcrumGT – Fulcrum Labs</div>
-            <div style="font-size:.8125rem;color:rgba(255,255,255,.5);margin-top:.125rem;">Startup Project Manager · Seal App</div>
-          </div>
-          <span class="exp-tag exp-tag-muted" style="font-size:.72rem;font-weight:500;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);">Product / PM</span>
-          <span class="exp-date" style="font-size:.8125rem;color:rgba(255,255,255,.7);">2023–2025</span>
-          <svg class="exp-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="exp-dropdown" role="region" aria-label="FulcrumGT details">
-          <ul class="exp-bullets-list">
-            <li>Secured $1,000,000+ in seed funding from FulcrumGT executive board and submitted two patents for app algorithms</li>
-            <li>Developed prototypes, wireframes, and UI designs for Seal, an online dating and matchmaking app</li>
-            <li>Received App Store approval and generated 1,000+ early sign-up and waitlist registrations ahead of launch</li>
-          </ul>
-        </div>
-      </div>
-
-      </div><!-- /exp-card -->
-    </div>
-
-    <!-- Skills -->
-    <div class="reveal rv3" style="padding-top:3rem;border-top:1px solid rgba(0,50,98,.1);">
-      <div style="font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Skills & Tools</div>
-      <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Agentic AI Design</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Financial Modeling</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Go-to-Market Strategy</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Pitchbook & Capital IQ</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Product Design</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">n8n & Replit</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Data Science</span>
-        <span class="skill-pill" style="font-size:.75rem;font-weight:500;padding:.35rem .9rem;border-radius:9999px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.08);">Mandarin (Basic)</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
 <!-- ═══ STATS CALLOUT ═══ -->
 <section style="background:#061422;padding:5.5rem 2rem;">
   <div style="max-width:72rem;margin:0 auto;">
@@ -566,19 +720,19 @@
     </div>
     <div class="reveal rv1 stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.06);border-radius:1.5rem;overflow:hidden;background:rgba(255,255,255,.015);">
       <div style="text-align:center;padding:2.5rem 1.5rem;border-right:1px solid rgba(255,255,255,.06);">
-        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">$1M+</div>
-        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">Seed Raised</div>
-        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Across portfolio companies</div>
+        <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums;">10+</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.625rem;">Seed Conversations</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.3);margin-top:.3rem;">Backed by models I built</div>
       </div>
       <div style="text-align:center;padding:2.5rem 1.5rem;border-right:1px solid rgba(255,255,255,.06);">
         <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">10K+</div>
-        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">Students Reached</div>
-        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Via AI agents deployed</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.625rem;">Students Reached</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.3);margin-top:.3rem;">Via AI agents deployed</div>
       </div>
       <div style="text-align:center;padding:2.5rem 1.5rem;">
         <div style="font-family:'EB Garamond',serif;font-size:3.75rem;font-weight:800;letter-spacing:-.045em;color:var(--gold);line-height:1;">3.9</div>
-        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.625rem;">GPA at Berkeley</div>
-        <div style="font-size:.8125rem;color:rgba(255,255,255,.18);margin-top:.3rem;">Haas + Data Science</div>
+        <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.625rem;">GPA at Berkeley</div>
+        <div style="font-size:.8125rem;color:rgba(255,255,255,.3);margin-top:.3rem;">Haas + Data Science</div>
       </div>
     </div>
   </div>
